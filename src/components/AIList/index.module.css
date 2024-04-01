@@ -109,6 +109,13 @@
   }
 }
 
+@media (max-width: 1028px) {
+  .ai-list li {
+    min-width: calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
 @media (max-width: 900px) {
   .ai-list li {
     min-width: 100%;
