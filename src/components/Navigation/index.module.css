@@ -1,0 +1,48 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 0 40px 0 50px;
+  background: #161616;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.logo {
+  width: 68px;
+}
+
+.ghost-image {
+  height: 73px;
+  margin: 2px 2px 0 0;
+}
+
+.login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url('./../../images/svg/login.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+  color: white;
+  text-decoration: none;
+  padding-right: 35px;
+}
+
+@media (max-width: 520px) {
+  .navigation {
+    padding: 0 20px 0 40px;
+  }
+}
