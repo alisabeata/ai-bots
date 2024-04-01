@@ -39,6 +39,7 @@
   color: white;
   text-decoration: none;
   padding-right: 35px;
+  white-space: nowrap;
 }
 
 @media (max-width: 520px) {

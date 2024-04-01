@@ -184,7 +184,7 @@ template {
 
 @font-face {
   font-family: 'MonumentExtended-Regular';
-  src: url('./fonts/PPMonumentExtended-Regular.woff2') format('woff');
+  src: local('PPMonumentExtended-Regular'), url('./fonts/PPMonumentExtended-Regular.woff2') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
