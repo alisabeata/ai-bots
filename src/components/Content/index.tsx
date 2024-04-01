@@ -13,7 +13,7 @@ export const Content = () => {
       />
       <AIList
         title={'Purpose Bots'}
-        descr={'AIs created to achieve your goalss'}
+        descr={'AIs created to achieve your goals'}
         items={MOCK_BOTS}
       />
     </div>
