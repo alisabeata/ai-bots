@@ -19,7 +19,7 @@ interface AIListProps {
 let quantity = 9
 
 export const AIList: React.FC<AIListProps> = ({ items, title, descr }) => {
-  const [shownElements, setShownElements] = useState(quantity)
+  const [shownElements, setShownElements] = useState<number>(quantity)
   const filteredItems = items.slice(0, shownElements)
 
   const handleClick = () => {

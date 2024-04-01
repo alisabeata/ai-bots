@@ -63,7 +63,8 @@
   font-weight: 700;
   line-height: 16px;
   text-align: left;
-  width: 30px;
+  max-width: 32px;
+  min-width: 32px;
   padding-right: 15px;
 }
 
