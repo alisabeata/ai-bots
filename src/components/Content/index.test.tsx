@@ -1,10 +1,22 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { Content } from './index'
-import { MOCK_CHARACTERS } from '../Mocks'
 import { MOCK_BOTS } from '../Mocks'
 
+// Mock the fetch function
+;(global as any).fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve({ personas: [{ id: 1, name: 'Test Character' }] }),
+    ok: true,
+  }),
+)
+
 describe('Content Component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders properly with mock data', () => {
     render(<Content />)
 
@@ -17,12 +29,13 @@ describe('Content Component', () => {
     ).toBeInTheDocument()
 
     // Assert that mock characters and mock bots are rendered
-    MOCK_CHARACTERS.forEach((character) => {
-      expect(screen.getByText(character.name)).toBeInTheDocument()
-    })
-
     MOCK_BOTS.forEach((bot) => {
       expect(screen.getByText(bot.name)).toBeInTheDocument()
     })
+  })
+
+  it('fetches data from the API', async () => {
+    render(<Content />)
+    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
   })
 })

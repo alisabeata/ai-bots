@@ -1,0 +1,12 @@
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 410px;
+    margin-bottom: 77px;
+}
+
+.loading svg {
+    width: 82px;
+}
