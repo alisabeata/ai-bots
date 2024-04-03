@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import classes from './index.module.css'
 import { AIList } from '../AIList'
-// import { MOCK_CHARACTERS } from '../Mocks'
+import { MOCK_CHARACTERS } from '../Mocks'
 import { MOCK_BOTS } from '../Mocks'
+import { ItemsProps } from '../AIList'
 
 export const Content = () => {
-  const [charactersData, setCharactersData] = useState([])
+  const [charactersData, setCharactersData] = useState<ItemsProps[]>([])
   const [loading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -30,6 +31,9 @@ export const Content = () => {
         setCharactersData(data.personas)
       } catch (error) {
         console.log('Error: ', error)
+
+        // TODO: delete later, only for demo if there the CORS error
+        setCharactersData(MOCK_CHARACTERS)
       }
       setIsLoading(false)
     }

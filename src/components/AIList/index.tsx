@@ -3,7 +3,7 @@ import { Button } from '../Utils/Button'
 import { Loading } from '../Loading'
 import classes from './index.module.css'
 
-interface ItemsProps {
+export interface ItemsProps {
   id: string
   name: string
   descr: string
