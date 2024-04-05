@@ -184,14 +184,20 @@ template {
 
 @font-face {
   font-family: 'MonumentExtended-Regular';
-  src: local('PPMonumentExtended-Regular'), url('./fonts/PPMonumentExtended-Regular.woff2') format('woff');
+  src: local('PPMonumentExtended-Regular'),
+    url('./fonts/PPMonumentExtended-Regular.woff2') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 /* main styles */
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
@@ -204,6 +210,19 @@ body {
   box-sizing: border-box;
 }
 
+body.dark-mode {
+  background: #161616;
+  color: white;
+}
+
+.dark-mode [class*='navigation'] {
+  box-shadow: none;
+}
+
 .align-center {
   text-align: center;
+}
+
+#root {
+  height: 100%;
 }

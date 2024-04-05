@@ -1,0 +1,10 @@
+.text-area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 280px);
+  height: calc(100% - 20px);
+  background: #1b1b1b;
+  border-radius: 16px;
+  margin: 0 20px 20px 0;
+}

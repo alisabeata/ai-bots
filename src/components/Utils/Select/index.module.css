@@ -1,0 +1,58 @@
+.custom-select {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.select-items {
+  position: absolute;
+  right: 0;
+  background-color: #161616;
+  list-style-type: none;
+  margin: -1px 0 0 0;
+  padding: 0;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 260px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.select-items li {
+  padding: 10px;
+}
+
+.select-items li:hover {
+  background-color: white;
+  color: #161616;
+}
+
+.select-selected {
+}
+
+.select-selected.open {
+}
+
+.select-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: black;
+  border-radius: 4px;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+}
+
+.select-icon svg {
+  fill: white;
+}
+
+.select-selected.open .select-icon {
+  border-radius: 5px 5px 0 0;
+}
+
+.select-selected.open svg {
+  transform: rotate(180deg) translateY(1px);
+}

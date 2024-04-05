@@ -1,0 +1,28 @@
+.previous-chats {
+  height: 100%;
+  width: 260px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.previous-chats_section {
+  margin-bottom: 20px;
+}
+
+.previous-chats_title {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #818181;
+}
+
+.previous-chats_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.previous-chats_list li {
+  position: relative;
+}

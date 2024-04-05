@@ -1,11 +1,16 @@
+import { Route, Routes } from 'react-router-dom'
 import { Navigation } from './components/Navigation'
-import { Content } from './components/Content'
+import { AILists } from './pages/AILists'
+import { Chat } from './pages/Chat'
 
 function App() {
   return (
     <>
       <Navigation />
-      <Content />
+      <Routes>
+        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="*" element={<AILists />} />
+      </Routes>
     </>
   )
 }

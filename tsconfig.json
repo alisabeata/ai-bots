@@ -23,9 +23,9 @@
       "@testing-library/jest-dom",
       "node"
     ],
-    "paths": {
-      "@/*": ["*"]
-    },
+    // "paths": {
+    //   "@/*": ["src/*"]
+    // },
     "plugins": [
       {
         "name": "next"
@@ -39,7 +39,7 @@
     "**/*.tsx",
     "types.d.ts",
     ".next/types/**/*.ts",
-    "dist/types/**/*.ts",
+    "dist/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

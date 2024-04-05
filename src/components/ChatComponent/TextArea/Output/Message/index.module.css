@@ -1,0 +1,31 @@
+.message {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: flex-end;
+  gap: 0.5rem;
+  margin-bottom: .5rem;
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+}
+
+.message-logo {
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.message-logo img {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.message-text {
+  width: 100%;
+  word-wrap: break-word;
+  margin-top: 10px;
+}

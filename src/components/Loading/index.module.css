@@ -1,12 +1,14 @@
 .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 410px;
-    margin-bottom: 77px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  width: 45px;
+  height: 100px;
 }
 
 .loading svg {
-    width: 82px;
+  width: 82px;
 }

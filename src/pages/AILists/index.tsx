@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import classes from './index.module.css'
-import { AIList } from '../AIList'
-import { MOCK_CHARACTERS } from '../Mocks'
-import { MOCK_BOTS } from '../Mocks'
-import { ItemsProps } from '../AIList'
+import { AIList } from '../../components/AIList'
+import { MOCK_CHARACTERS } from '../../components/Mocks'
+import { MOCK_BOTS } from '../../components/Mocks'
+import { ItemsProps } from '../../components/AIList'
 
-export const Content = () => {
+export const AILists = () => {
   const [charactersData, setCharactersData] = useState<ItemsProps[]>([])
   const [loading, setIsLoading] = useState(false)
 
@@ -42,7 +42,7 @@ export const Content = () => {
   }, [])
 
   return (
-    <div className={classes.content}>
+    <main className={classes.content}>
       <AIList
         title={'Iris Characters'}
         descr={'AIs created by Iris team'}
@@ -55,6 +55,6 @@ export const Content = () => {
         descr={'AIs created to achieve your goals'}
         items={MOCK_BOTS}
       />
-    </div>
+    </main>
   )
 }
