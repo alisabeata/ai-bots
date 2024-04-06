@@ -1,18 +1,25 @@
+@import 'src/utils/colors.css';
+
 .message {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   align-self: flex-end;
-  gap: 0.5rem;
-  margin-bottom: .5rem;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.2rem;
   width: 100%;
   min-width: 100%;
   height: auto;
+  font-size: 1.125rem; /* 18px */
 }
 
 .message-logo {
+  display: block;
   width: 42px;
   height: 42px;
+  min-width: 42px;
+  min-height: 42px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -25,7 +32,32 @@
 }
 
 .message-text {
-  width: 100%;
+  width: calc(100% - 42px - 1rem);
   word-wrap: break-word;
   margin-top: 10px;
+}
+
+.message-text__file {
+  display: flex;
+}
+
+.message-text__file-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray2);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  user-select: none;
+}
+
+.message-text__file-content span {
+  opacity: 0.8;
+}
+
+.message-text__file span svg {
+  display: inline;
+  margin-right: 0.5rem;
+  opacity: 0.8;
 }

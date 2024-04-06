@@ -9,10 +9,10 @@ export const Chat = () => {
   const id = params.id
 
   useEffect(() => {
-    document.body.classList.add('dark-mode')
+    document.body.classList.add('chat', 'dark-mode')
 
     return () => {
-      document.body.classList.remove('dark-mode')
+      document.body.classList.remove('chat', 'dark-mode')
     }
   }, [])
 

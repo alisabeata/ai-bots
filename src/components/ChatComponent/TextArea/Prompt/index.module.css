@@ -2,11 +2,11 @@
 
 .prompt {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  width: calc(100% - 1rem);
+  width: calc(100% - 3rem);
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem 1.5rem;
 }
 
 .prompt button {
@@ -22,11 +22,12 @@
   cursor: pointer;
   border-radius: 50%;
   padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prompt-input {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   background: #212121;
   background: var(--gray2);
@@ -35,9 +36,17 @@
 
 .prompt-input_text {
   width: 100%;
-  height: 45px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 25dvh;
   border: 0 none;
-  padding: 0.5rem;
+  padding: 1rem 1rem 1rem 0;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.prompt-input_text::placeholder {
+  font-size: 0.8125rem; /* 13px */
 }
 
 .prompt-input_file {
@@ -48,6 +57,7 @@
   height: 34px;
   min-width: 34px;
   cursor: pointer;
+  margin-bottom: 0.5rem;
 }
 
 .prompt-input_file input {

@@ -1,4 +1,5 @@
 .side-bar {
-  width: 260px;
-  height: 100%;
+  width: calc(330px - 3rem);
+  min-height: 100%;
+  padding: 0 1.5rem; /* 24px to rem */
 }

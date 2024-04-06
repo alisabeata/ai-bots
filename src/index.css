@@ -182,7 +182,8 @@ template {
   display: none;
 }
 
-input {
+input,
+textarea {
   appearance: none;
   border: none;
   outline: none;
@@ -233,14 +234,18 @@ body.dark-mode {
   color: white;
 }
 
-.dark-mode [class*='navigation'] {
-  box-shadow: none;
-}
-
 .align-center {
   text-align: center;
 }
 
 #root {
   height: 100%;
+}
+
+@media (max-width: 520px) {
+  body.chat.dark-mode {
+    background: #f4eeea;
+    background: var(--beige);
+    color: #161616;
+  }
 }

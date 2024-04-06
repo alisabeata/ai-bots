@@ -7,10 +7,13 @@ import React, {
 } from 'react'
 
 // Types
+export type TypeMessageType = 'text' | 'file' | 'audio' | 'video'
+
 export type MessageType = {
   id: number
   text: string
   sender: string
+  type: TypeMessageType
 }
 
 type StateType = {
@@ -21,7 +24,7 @@ type ActionType = { type: 'ADD_MESSAGE'; payload: MessageType }
 
 type InitStateType = {
   state: StateType
-  addMessage: (message: MessageType) => void
+  addMessage: (message: MessageType, callback?: ()=>void) => void
 }
 
 // Initial State
@@ -55,9 +58,15 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   const [state, dispatch] = useReducer(reducer, initialState)
 
   // Memoize addMessage function
-  const addMessage = useCallback((message: MessageType) => {
-    dispatch({ type: 'ADD_MESSAGE', payload: message })
-  }, [])
+  const addMessage = useCallback(
+    (message: MessageType, callback?: () => void) => {
+      dispatch({ type: 'ADD_MESSAGE', payload: message })
+      if (callback) {
+        callback()
+      }
+    },
+    [],
+  )
 
   // Memoize context value
   const contextValue = useMemo(
