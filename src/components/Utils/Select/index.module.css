@@ -16,6 +16,11 @@
   min-width: 260px;
   max-height: 150px;
   overflow-y: auto;
+  display: none;
+}
+
+.select-items.select-items__open {
+  display: block;
 }
 
 .select-items li {
@@ -30,7 +35,7 @@
 .select-selected {
 }
 
-.select-selected.open {
+.select-selected.select-selected__open {
 }
 
 .select-icon {
@@ -49,10 +54,10 @@
   fill: white;
 }
 
-.select-selected.open .select-icon {
+.select-selected.select-selected__open .select-icon {
   border-radius: 5px 5px 0 0;
 }
 
-.select-selected.open svg {
+.select-selected.select-selected__open svg {
   transform: rotate(180deg) translateY(1px);
 }

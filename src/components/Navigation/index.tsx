@@ -1,6 +1,6 @@
 import classes from './index.module.css'
-import logo from './../../images/svg/logo.svg'
-import ghost from './../../images/ghost.gif'
+import logo from 'src/images/svg/logo.svg'
+import ghost from 'src/images/ghost.gif'
 
 export const Navigation = () => {
   return (

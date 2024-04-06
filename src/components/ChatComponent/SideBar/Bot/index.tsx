@@ -1,7 +1,7 @@
-import { Button } from './../../../Utils/Button'
-import { Select } from './../../../Utils/Select'
-import img2 from './../../../../images/img2.png'
-import { ReactComponent as PlusIcon } from './../../../../images/svg/plus.svg'
+import { Button } from 'src/components/Utils/Button'
+import { Select } from 'src/components/Utils/Select'
+import img2 from 'src/images/img2.png'
+import { ReactComponent as PlusIcon } from 'src/images/svg/plus.svg'
 import classes from './index.module.css'
 
 export const Bot = () => {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import classes from './index.module.css'
-import { AIList } from '../../components/AIList'
-import { MOCK_CHARACTERS } from '../../components/Mocks'
-import { MOCK_BOTS } from '../../components/Mocks'
-import { ItemsProps } from '../../components/AIList'
+import { AIList } from 'src/components/AIList'
+import { MOCK_CHARACTERS } from 'src/components/Mocks'
+import { MOCK_BOTS } from 'src/components/Mocks'
+import { ItemsProps } from 'src/components/AIList'
 
 export const AILists = () => {
   const [charactersData, setCharactersData] = useState<ItemsProps[]>([])

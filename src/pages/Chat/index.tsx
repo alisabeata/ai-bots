@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ChatComponent } from './../../components/ChatComponent'
+import { ChatComponent } from 'src/components/ChatComponent'
 import classes from './index.module.css'
 
 export const Chat = () => {

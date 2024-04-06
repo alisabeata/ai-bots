@@ -23,9 +23,6 @@
       "@testing-library/jest-dom",
       "node"
     ],
-    // "paths": {
-    //   "@/*": ["src/*"]
-    // },
     "plugins": [
       {
         "name": "next"

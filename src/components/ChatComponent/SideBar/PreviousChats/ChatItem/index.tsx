@@ -1,5 +1,5 @@
 import classes from './index.module.css'
-import { ReactComponent as MoreIcon } from './../../../../../images/svg/more.svg'
+import { ReactComponent as MoreIcon } from 'src/images/svg/more.svg'
 
 export const ChatItem = () => {
   return (
