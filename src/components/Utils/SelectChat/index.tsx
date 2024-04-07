@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ReactComponent as ArrowIcon } from 'src/images/svg/arrow.svg'
+import { ReactComponent as ArrowRoundIcon } from 'src/images/svg/arrow-mobile.svg'
 import classes from './index.module.css'
 
-interface SelectProps {
+interface SelectChatProps {
   items: string[]
   callback?: (p: string) => void
 }
 
-export const Select: React.FC<SelectProps> = ({ items, callback }) => {
+export const SelectChat: React.FC<SelectChatProps> = ({ items, callback }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('Select an option')
+  const [selectedOption, setSelectedOption] = useState('Monique')
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -51,9 +52,16 @@ export const Select: React.FC<SelectProps> = ({ items, callback }) => {
   return (
     <div className={classes['custom-select']} ref={dropdownRef}>
       <div className={openIconClasses} onClick={toggleDropdown}>
-        {/* selectedOption */}
+        <div className={classes['select-selected_option']}>
+          {selectedOption}
+        </div>
         <div className={classes['select-icon']}>
           <ArrowIcon />
+        </div>
+        <div
+          className={`${classes['select-icon']} ${classes['select-icon_mobile']}`}
+        >
+          <ArrowRoundIcon />
         </div>
       </div>
 

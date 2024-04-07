@@ -1,13 +1,22 @@
 import { Button } from 'src/components/Utils/Button'
-import { Select } from 'src/components/Utils/Select'
+import { SelectChat } from 'src/components/Utils/SelectChat'
 import img2 from 'src/images/img2.png'
 import { ReactComponent as PlusIcon } from 'src/images/svg/plus.svg'
+import { ReactComponent as CloseIcon } from 'src/images/svg/close.svg'
+import { ReactComponent as LogoIcon } from 'src/images/svg/logo.svg'
 import classes from './index.module.css'
 
-export const Bot = () => {
+interface BotProps {
+  onClose: () => void
+}
+
+export const Bot: React.FC<BotProps> = ({ onClose }) => {
   return (
     <div className={classes.bot}>
       <div className={classes.card}>
+        <a href="/" className={classes.logo}>
+          <LogoIcon />
+        </a>
         <div className={classes.identity}>
           <img src={img2} alt="" />
           <div className={classes['card_descr']}>
@@ -15,14 +24,19 @@ export const Bot = () => {
             <p>Some text here...</p>
           </div>
         </div>
-        <Select items={['Item 1', 'Item 2', 'Item 3']} />
+        <div className={classes['card_select']}>
+          <SelectChat items={['Monique', 'Item 1', 'Item 2', 'Item 3']} />
+        </div>
+        <button className={classes['card_close']} onClick={onClose}>
+          <CloseIcon />
+        </button>
       </div>
 
-      <Button whiteBorder fullSize style={{ marginBottom: '10px' }}>
+      <Button whiteBorder fullSize className={classes['share-chat']}>
         share Monique
       </Button>
 
-      <Button white fullSize>
+      <Button white fullSize className={classes['new-chat']}>
         <PlusIcon /> new chat
       </Button>
     </div>

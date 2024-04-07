@@ -1,0 +1,141 @@
+@import 'src/utils/colors.css';
+
+@keyframes loadingAnimation {
+  0% {
+    transform: translateY(3px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.select-items {
+  position: absolute;
+  right: 0;
+  background-color: #161616;
+  background-color: var(--black);
+  list-style-type: none;
+  margin: -1px 0 0 0;
+  padding: 0;
+  border-radius: 4px;
+  width: 100%;
+  min-width: calc(330px - 3rem);
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+  animation: loadingAnimation 0.2s ease-out forwards;
+  opacity: 0;
+  transform: translateY(3px);
+}
+
+.select-items.select-items__open {
+  display: block;
+}
+
+.select-items li {
+  padding: 10px;
+}
+
+.select-items li:hover {
+  background-color: white;
+  color: #161616;
+  cursor: pointer;
+}
+
+.select-selected {
+  cursor: pointer;
+}
+
+.select-selected.select-selected__open {
+}
+
+.select-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: black;
+  border-radius: 4px;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+}
+
+.select-icon svg {
+  fill: white;
+}
+
+.select-icon_mobile {
+  display: none;
+}
+
+.select-icon_mobile svg {
+  fill: none;
+}
+
+.select-icon_mobile path {
+  fill: black;
+  stroke: black;
+}
+
+.select-selected.select-selected__open .select-icon {
+  border-radius: 5px 5px 0 0;
+}
+
+.select-selected.select-selected__open svg {
+  transform: rotate(180deg) translateY(1px);
+}
+
+.select-selected_option {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .select-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .select-icon {
+    background: none;
+    display: none;
+  }
+
+  .select-icon_mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .select-selected_option {
+    font-size: 1.375rem;
+    line-height: 1;
+    display: block;
+  }
+
+  .select-items {
+    left: 0;
+    right: 0;
+    margin-left: -115px;
+    width: 330px;
+    min-width: 330px;
+    background: #f4eeea;
+    background: var(--beige);
+    border: 1px solid #ddd7d1;
+  }
+
+  .select-items li:hover {
+    background-color: #161616;
+    background-color: var(--black);
+    color: white;
+  }
+}

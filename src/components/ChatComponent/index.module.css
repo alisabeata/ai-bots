@@ -1,3 +1,5 @@
+@import 'src/utils/colors.css';
+
 .chat-component {
   overflow: hidden;
   position: relative;
@@ -7,4 +9,42 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
+}
+
+.chat-component_nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+  background: #f4eeea;
+  background: var(--beige);
+  padding: 0.5rem;
+  display: none;
+}
+
+.chat-component_nav button {
+  background: none;
+  border: 0 none;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.chat-component_nav button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.new-chat path {
+  fill: black;
+}
+
+@media (max-width: 767px) {
+  .chat-component_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

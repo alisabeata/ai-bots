@@ -51,7 +51,7 @@
 .ai-list li.animated {
   animation: loadingAnimation 0.2s 0.1s ease-out forwards;
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(5px);
 }
 
 .ai-list li > a {

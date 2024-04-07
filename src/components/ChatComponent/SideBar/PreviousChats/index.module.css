@@ -4,6 +4,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
+  padding: 0 1.5rem; /* 24px to rem */
 }
 
 .previous-chats_section {
@@ -26,4 +27,11 @@
 
 .previous-chats_list li {
   position: relative;
+}
+
+
+@media (max-width: 767px) {
+  .previous-chats {
+    padding-top: 137px;
+  }
 }

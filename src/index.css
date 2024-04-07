@@ -1,4 +1,4 @@
-@import './utils/colors.css';
+@import 'src/utils/colors.css';
 
 /* normalize css */
 
@@ -242,7 +242,7 @@ body.dark-mode {
   height: 100%;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 767px) {
   body.chat.dark-mode {
     background: #f4eeea;
     background: var(--beige);

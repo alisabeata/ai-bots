@@ -74,6 +74,8 @@ export const Prompt: React.FC<PromptProps> = () => {
 
   const autoResize = () => {
     const textarea = textareaRef.current!
+
+    // Changing the height of the textarea field when sending text messages
     textarea.style.height = '50px'
     if (textarea.scrollHeight >= 50) {
       textarea.style.height = `${textarea.scrollHeight}px`

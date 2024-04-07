@@ -2,9 +2,18 @@ import { useLocation } from 'react-router-dom'
 import { Button } from '../Utils/Button'
 import classes from './index.module.css'
 import logo from 'src/images/svg/logo.svg'
+import { ReactComponent as LoginIcon } from 'src/images/svg/login.svg'
 import ghost from 'src/images/ghost.gif'
 
-export const Navigation = () => {
+interface NavigationProps {
+  hideOnMobile?: boolean
+  className?: string
+}
+
+export const Navigation: React.FC<NavigationProps> = ({
+  hideOnMobile = false,
+  className,
+}) => {
   const location = useLocation()
   const isChat = location.pathname.includes('chat')
 
@@ -14,6 +23,14 @@ export const Navigation = () => {
     navigationClasses += ` ${classes['navigation__chat']}`
   }
 
+  if (hideOnMobile) {
+    navigationClasses += ` ${classes['navigation__hide-on-mobile']}`
+  }
+
+  if (className) {
+    navigationClasses += ` ${className}`
+  }
+
   return (
     <nav className={navigationClasses}>
       <a href="/">
@@ -21,8 +38,14 @@ export const Navigation = () => {
       </a>
       <div className={classes['navigation-buttons']}>
         <a href="/" title="Log In" className={classes.login}>
-          <img src={ghost} alt="Ghost" className={classes['ghost-image']} />
-          <span>Cute Ghost</span>
+          <div
+            style={{ backgroundImage: `url(${ghost})` }}
+            className={classes.avatar}
+          />
+          <div className={classes['login_name']}>
+            <span>Cute Ghost</span>
+            <LoginIcon />
+          </div>
         </a>
         {isChat && (
           <Button

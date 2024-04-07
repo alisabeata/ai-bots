@@ -1,5 +1,8 @@
+@import 'src/utils/colors.css';
+
 .bot {
   margin-bottom: 1.5rem; /* 24px */
+  padding: 0 1.5rem; /* 24px to rem */
 }
 
 .identity {
@@ -9,10 +12,26 @@
   margin-bottom: 1.25rem; /* 20px */
 }
 
+.logo {
+  display: none;
+}
+
+.logo svg path {
+  fill: black;
+}
+
 .card {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.card_close {
+  display: none;
+}
+
+.card_close path {
+  fill: black;
 }
 
 .card_descr {
@@ -43,4 +62,66 @@
   color: #818181;
   padding: 0;
   margin: 0;
+}
+
+.share-chat {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .bot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #f4eeea;
+    background: var(--beige);
+    padding: 1rem;
+    margin: 0;
+    z-index: 6;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .identity {
+    display: none;
+  }
+
+  .logo {
+    display: block;
+  }
+
+  .card_select {
+    display: none;
+  }
+
+  .card_close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    background: none;
+    border: 0 none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .card_close svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .bot .new-chat {
+    display: none;
+  }
+
+  button.share-chat {
+    border: 1px solid black !important;
+    background: #f4eeea;
+    background: var(--beige);
+    color: black;
+  }
 }

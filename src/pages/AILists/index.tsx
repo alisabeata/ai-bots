@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import classes from './index.module.css'
+import { Navigation } from 'src/components/Navigation'
 import { AIList } from 'src/components/AIList'
 import { MOCK_CHARACTERS } from 'src/components/Mocks'
 import { MOCK_BOTS } from 'src/components/Mocks'
@@ -42,19 +43,22 @@ export const AILists = () => {
   }, [])
 
   return (
-    <main className={classes.content}>
-      <AIList
-        title={'Iris Characters'}
-        descr={'AIs created by Iris team'}
-        items={charactersData}
-        isLoading={loading}
-      />
+    <>
+      <Navigation />
+      <main className={classes.content}>
+        <AIList
+          title={'Iris Characters'}
+          descr={'AIs created by Iris team'}
+          items={charactersData}
+          isLoading={loading}
+        />
 
-      <AIList
-        title={'Purpose Bots'}
-        descr={'AIs created to achieve your goals'}
-        items={MOCK_BOTS}
-      />
-    </main>
+        <AIList
+          title={'Purpose Bots'}
+          descr={'AIs created to achieve your goals'}
+          items={MOCK_BOTS}
+        />
+      </main>
+    </>
   )
 }

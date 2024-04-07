@@ -1,5 +1,102 @@
+@import 'src/utils/colors.css';
+
+@keyframes showBackground {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
 .side-bar {
-  width: calc(330px - 3rem);
+  width: 330px;
   min-height: 100%;
-  padding: 0 1.5rem; /* 24px to rem */
+  box-sizing: border-box;
+}
+
+.side-bar_background {
+  display: none;
+}
+
+.side-bar_navigation {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .side-bar {
+    position: fixed;
+    top: 0;
+    left: -340px;
+    width: 340px;
+    min-width: 340px;
+    max-width: 340px;
+    height: 100%;
+    background: #f4eeea;
+    background: var(--beige);
+    overflow-y: auto;
+    z-index: 11;
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+
+    transition: all 0.3s 0.1s cubic-bezier(0.165, 0.84, 0.44, 1); /* easing: outQuart */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .side-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .side-bar.side-bar__open {
+    transform: translate3d(340px, 0, 0);
+  }
+
+  .side-bar.side-bar__open + .side-bar_background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    background: #ddd7d1;
+    background: var(--darkBeige2);
+    display: block;
+    animation: showBackground 0.1s 0.1s linear forwards;
+    opacity: 0;
+  }
+
+  .side-bar_navigation {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: auto;
+    display: block;
+    z-index: 15;
+    background: #f4eeea;
+    background: var(--beige);
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .side-bar_navigation > a {
+    display: none;
+  }
+
+  .side-bar_navigation > div span {
+    color: black;
+    margin-left: 0.5rem;
+  }
+
+  .side-bar_navigation > div svg path {
+    fill: black;
+  }
+
+  .side-bar_navigation > div button {
+    border: 1px solid black !important;
+    background: #f4eeea;
+    background: var(--beige);
+    color: black;
+    margin: 0;
+  }
 }

@@ -8,6 +8,7 @@ interface ButtonProps {
   whiteBorder?: boolean
   fullSize?: boolean
   style?: CSSProperties
+  className?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -16,7 +17,8 @@ export const Button: React.FC<ButtonProps> = ({
   white,
   whiteBorder,
   fullSize,
-  style
+  style,
+  className,
 }) => {
   let buttonClasses = `${classes.button}`
 
@@ -30,6 +32,10 @@ export const Button: React.FC<ButtonProps> = ({
 
   if (fullSize) {
     buttonClasses += ` ${classes['full-size']}`
+  }
+
+  if (className) {
+    buttonClasses += ` ${className}`
   }
 
   return (

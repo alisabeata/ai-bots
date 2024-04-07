@@ -31,6 +31,7 @@
   width: 100%;
   background: #212121;
   background: var(--gray2);
+  color: white;
   border-radius: 12px;
 }
 
@@ -72,4 +73,24 @@ button.prompt-submit {
 
 button.prompt-video-button {
   background: white;
+}
+
+button.prompt-video-button path {
+  fill: #212121;
+  fill: var(--gray2);
+}
+
+@media (max-width: 767px) {
+  button.prompt-video-button {
+    background: #212121;
+    background: var(--gray2);
+  }
+
+  button.prompt-video-button path {
+    fill: white;
+  }
+
+  button.prompt-submit {
+    display: none;
+  }
 }
