@@ -7,6 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 import { useChat } from 'src/context/MessageContext'
+import { useChatSessions } from 'src/context/ChatSessionsContext'
 import { ReactComponent as SendIcon } from 'src/images/svg/arrow-send.svg'
 import { ReactComponent as AudioIcon } from 'src/images/svg/mic.svg'
 import { ReactComponent as VideoIcon } from 'src/images/svg/camera.svg'
@@ -18,6 +19,7 @@ import type { MessageType, TypeMessageType } from 'src/context/MessageContext'
 interface PromptProps {}
 
 export const Prompt: React.FC<PromptProps> = () => {
+  const { initSession } = useChatSessions()
   const { addMessage } = useChat()
   const [message, setMessage] = useState('')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)

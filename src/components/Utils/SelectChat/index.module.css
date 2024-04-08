@@ -41,7 +41,14 @@
 }
 
 .select-items li {
+}
+
+.select-items li a {
+  display: block;
+  width: 100%;
   padding: 10px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .select-items li:hover {

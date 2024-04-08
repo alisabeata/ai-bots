@@ -24,7 +24,11 @@ type ActionType = { type: 'ADD_MESSAGE'; payload: MessageType }
 
 type InitStateType = {
   state: StateType
-  addMessage: (message: MessageType, callback?: ()=>void) => void
+  addMessage: (
+    message: MessageType,
+    access_key?: string,
+    callback?: () => void,
+  ) => void
 }
 
 // Initial State
@@ -59,10 +63,31 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Memoize addMessage function
   const addMessage = useCallback(
-    (message: MessageType, callback?: () => void) => {
-      dispatch({ type: 'ADD_MESSAGE', payload: message })
-      if (callback) {
-        callback()
+    async (
+      message: MessageType,
+      access_key?: string,
+      callback?: () => void,
+    ) => {
+      try {
+        // Async POST request to the backend
+        const response = await fetch(`/chat_sessions/${access_key}/messages`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message }),
+        })
+        if (!response.ok) {
+          throw new Error('Failed to add message')
+        }
+        const data = await response.json()
+        // Dispatch action after successful addition
+        dispatch({ type: 'ADD_MESSAGE', payload: data.message })
+        if (callback) {
+          callback()
+        }
+      } catch (error) {
+        console.error('Error adding message')
       }
     },
     [],

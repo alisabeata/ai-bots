@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom'
 import { Button } from '../Utils/Button'
 import { Loading } from '../Loading'
 import classes from './index.module.css'
-
-export interface ItemsProps {
-  id: string
-  name: string
-  descr: string
-  image: string
-}
+import type { PersonaType } from 'src/context/PersonasContext'
 
 interface AIListProps {
-  items: ItemsProps[]
+  items: PersonaType[]
   title: string
   descr: string
   isLoading?: boolean
@@ -95,7 +89,7 @@ export const AIList: React.FC<AIListProps> = ({
                 className={ind >= 9 ? classes.animated : ''}
                 ref={ind === filteredItems.length - 1 ? listEndRef : null}
               >
-                <Link to={`/chat/${item.id}`}>
+                <Link to={`/chat/${item.id}#${item.name}`}>
                   <span className={classes['ai-list_number']}>{ind + 1}</span>
                   {item.image ? (
                     <img

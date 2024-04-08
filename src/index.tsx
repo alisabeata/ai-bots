@@ -5,12 +5,15 @@ import './index.css'
 import './fonts/PPMonumentExtended-Regular.woff2'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { PersonasProvider } from './context/PersonasContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <PersonasProvider>
+        <App />
+      </PersonasProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )

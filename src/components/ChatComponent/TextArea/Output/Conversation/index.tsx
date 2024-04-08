@@ -5,6 +5,7 @@ import classes from './index.module.css'
 import img2 from 'src/images/img2.png'
 import type { MessageType } from 'src/context/MessageContext'
 
+// TODO: change to the actual data
 const initMessage: MessageType = {
   id: Date.now(),
   text: 'Hey, cuttie! What’s on your mind?',
@@ -16,6 +17,7 @@ let isSent: boolean = false
 
 export const Conversation: React.FC = () => {
   const { state, addMessage } = useChat()
+  const messages: MessageType[] = state.messages
 
   useEffect(() => {
     if (!isSent) {
@@ -26,13 +28,13 @@ export const Conversation: React.FC = () => {
 
   let conversationClasses = classes.conversation
 
-  if (state.messages.length > 1) {
+  if (messages.length > 1) {
     conversationClasses += ` ${classes['conversation__offset']}`
   }
 
   return (
     <div className={conversationClasses}>
-      {(state.messages as MessageType[]).map((message) => (
+      {messages.map((message) => (
         <Message key={message.id} sender={message.sender} type={message.type}>
           <div dangerouslySetInnerHTML={{ __html: message.text }} />
         </Message>

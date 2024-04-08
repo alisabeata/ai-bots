@@ -95,6 +95,7 @@
   height: 100%;
   padding-top: 10px;
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 .ai-list_name {

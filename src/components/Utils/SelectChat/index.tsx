@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { ReactComponent as ArrowIcon } from 'src/images/svg/arrow.svg'
 import { ReactComponent as ArrowRoundIcon } from 'src/images/svg/arrow-mobile.svg'
 import classes from './index.module.css'
+import { usePersonas } from 'src/context/PersonasContext'
+import type { PersonaType } from 'src/context/PersonasContext'
 
 interface SelectChatProps {
-  items: string[]
   callback?: (p: string) => void
 }
 
-export const SelectChat: React.FC<SelectChatProps> = ({ items, callback }) => {
+export const SelectChat: React.FC<SelectChatProps> = ({ callback }) => {
+  const { charactersData, isLoading } = usePersonas()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState('Monique')
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -66,13 +69,15 @@ export const SelectChat: React.FC<SelectChatProps> = ({ items, callback }) => {
       </div>
 
       <ul className={selectItemsClasses}>
-        {items.map((option, index) => (
+        {charactersData.map((persona: PersonaType) => (
           <li
-            key={index}
+            key={persona.id}
             className={classes['select-item']}
-            onClick={() => selectOption(option)}
+            onClick={() => selectOption(persona.name)}
           >
-            {option}
+            <Link to={`/chat/${persona.id}#${persona.name}`}>
+              {persona.name}
+            </Link>
           </li>
         ))}
       </ul>
