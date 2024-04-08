@@ -1,22 +1,21 @@
 import React, { useEffect, useRef } from 'react'
 import classes from './index.module.css'
 import { ReactComponent as FileIcon } from 'src/images/svg/file.svg'
+import type { MessageType } from 'src/context/DialogContext'
 
-import type { TypeMessageType } from 'src/context/MessageContext'
-
-interface MessageProps {
-  children: React.ReactNode
-  sender: string
-  type: TypeMessageType
-}
-
-export const Message: React.FC<MessageProps> = ({ children, sender, type }) => {
+export const Message: React.FC<MessageType> = ({ sender, type, text }) => {
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // Scroll to bottom
+  useEffect(() => {
+    scrollToBottom()
+  }, [])
+
+  // Type message
   useEffect(() => {
     scrollToBottom()
   }, [])
@@ -32,12 +31,14 @@ export const Message: React.FC<MessageProps> = ({ children, sender, type }) => {
         >
           <span className={classes['message-text__file-content']}>
             <FileIcon />
-            <span>{children}</span>
+            <div dangerouslySetInnerHTML={{ __html: text }} />
           </span>
         </div>
       )}
       {type === 'text' && (
-        <div className={classes['message-text']}>{children}</div>
+        <div className={classes['message-text']}>
+          <div dangerouslySetInnerHTML={{ __html: text }} />
+        </div>
       )}
       <div ref={messagesEndRef} />
     </div>

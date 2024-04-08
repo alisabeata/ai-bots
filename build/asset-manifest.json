@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/iris/static/css/main.6a79db09.css",
-    "main.js": "/iris/static/js/main.0c2743f8.js",
+    "main.css": "/iris/static/css/main.74f7169b.css",
+    "main.js": "/iris/static/js/main.dbe2bb3d.js",
     "static/js/453.4d059914.chunk.js": "/iris/static/js/453.4d059914.chunk.js",
     "static/media/ghost-avatar.png": "/iris/static/media/ghost-avatar.9f089724065729bca7fe.png",
     "static/media/ghost.gif": "/iris/static/media/ghost.019ac83e6a5b727b7194.gif",
@@ -33,12 +33,12 @@
     "static/media/close.svg": "/iris/static/media/close.dc4bae63bce86ae827f3b0bdab2a9375.svg",
     "static/media/arrow.svg": "/iris/static/media/arrow.266235b158bf85bf883f424cc0a74478.svg",
     "static/media/show-menu.svg": "/iris/static/media/show-menu.909baae41dbf8bfc8a86221cde359745.svg",
-    "main.6a79db09.css.map": "/iris/static/css/main.6a79db09.css.map",
-    "main.0c2743f8.js.map": "/iris/static/js/main.0c2743f8.js.map",
+    "main.74f7169b.css.map": "/iris/static/css/main.74f7169b.css.map",
+    "main.dbe2bb3d.js.map": "/iris/static/js/main.dbe2bb3d.js.map",
     "453.4d059914.chunk.js.map": "/iris/static/js/453.4d059914.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6a79db09.css",
-    "static/js/main.0c2743f8.js"
+    "static/css/main.74f7169b.css",
+    "static/js/main.dbe2bb3d.js"
   ]
 }

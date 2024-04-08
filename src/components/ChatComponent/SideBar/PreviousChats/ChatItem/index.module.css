@@ -2,6 +2,7 @@
 
 .chat-item {
   position: relative;
+  display: flex;
   color: #b7b7b7;
   color: var(--gray4);
   margin: 0.5rem -0.5rem;

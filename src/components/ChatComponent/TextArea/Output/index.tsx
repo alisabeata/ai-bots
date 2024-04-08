@@ -1,14 +1,11 @@
-import { useEffect, useRef, useCallback } from 'react'
-import { Conversation } from './Conversation'
+import { Dialog } from './Dialog'
 import classes from './index.module.css'
 
-interface OutputProps {}
-
-export const Output: React.FC<OutputProps> = () => {
+export const Output: React.FC = () => {
   return (
     <div className={classes.output}>
       <div className={classes['output-scroll']}>
-        <Conversation />
+        <Dialog />
       </div>
     </div>
   )

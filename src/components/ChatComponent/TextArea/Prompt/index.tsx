@@ -6,21 +6,21 @@ import React, {
   useRef,
   useEffect,
 } from 'react'
-import { useChat } from 'src/context/MessageContext'
-import { useChatSessions } from 'src/context/ChatSessionsContext'
+import { useDialog } from 'src/context/DialogContext'
+import { useDialogSessions } from 'src/context/ChatSessionsContext'
 import { ReactComponent as SendIcon } from 'src/images/svg/arrow-send.svg'
 import { ReactComponent as AudioIcon } from 'src/images/svg/mic.svg'
 import { ReactComponent as VideoIcon } from 'src/images/svg/camera.svg'
 import { ReactComponent as FileIcon } from 'src/images/svg/file.svg'
 import imgAvatar from 'src/images/ghost-avatar.png'
 import classes from './index.module.css'
-import type { MessageType, TypeMessageType } from 'src/context/MessageContext'
+import type { MessageType, TypeMessageType } from 'src/context/DialogContext'
 
 interface PromptProps {}
 
 export const Prompt: React.FC<PromptProps> = () => {
-  const { initSession } = useChatSessions()
-  const { addMessage } = useChat()
+  const { initSession, sessionBot } = useDialog()
+  const { addMessage } = useDialog()
   const [message, setMessage] = useState('')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -28,6 +28,9 @@ export const Prompt: React.FC<PromptProps> = () => {
 
   const sendMessage = useCallback(
     (messageContent: string, type?: TypeMessageType) => {
+      const accessKey =
+        sessionBot.access_key
+
       if (messageContent.trim().length > 0) {
         const newMessage: MessageType = {
           id: Date.now(),
@@ -35,12 +38,16 @@ export const Prompt: React.FC<PromptProps> = () => {
           sender: imgAvatar,
           type: type ? type : 'text',
         }
-
-        addMessage(newMessage)
+        
+        if (!accessKey) {
+          initSession(newMessage)
+        } else {
+          addMessage(newMessage, accessKey)
+        }
         resetTextArea()
       }
     },
-    [addMessage],
+    [addMessage, initSession, sessionBot.access_key],
   )
 
   const handleFileChange = useCallback(

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
-import { ChatProvider } from 'src/context/MessageContext'
+import { useParams } from 'react-router-dom'
+import { DialogProvider } from 'src/context/DialogContext'
 import { ChatSessionsProvider } from 'src/context/ChatSessionsContext'
 import { Navigation } from 'src/components/Navigation'
 import { ChatComponent } from 'src/components/ChatComponent'
@@ -8,9 +8,7 @@ import classes from './index.module.css'
 
 export const Chat = () => {
   const params = useParams()
-  const location = useLocation()
   const id = params.id
-  const name = decodeURIComponent(location.hash).slice(1)
 
   useEffect(() => {
     document.body.classList.add('chat', 'dark-mode')
@@ -20,18 +18,18 @@ export const Chat = () => {
     }
   }, [])
 
-  if (!id || !name) {
+  if (!id) {
     return null
   }
 
   return (
-    <ChatSessionsProvider bot={{ id, name }}>
-      <ChatProvider>
+    <ChatSessionsProvider id={id}>
+      <DialogProvider id={id}>
         <Navigation hideOnMobile />
         <main className={classes['chat-content']}>
           <ChatComponent />
         </main>
-      </ChatProvider>
+      </DialogProvider>
     </ChatSessionsProvider>
   )
 }

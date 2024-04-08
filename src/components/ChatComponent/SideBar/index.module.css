@@ -10,9 +10,13 @@
 }
 
 .side-bar {
+  display: flex;
+  flex-direction: column;
   width: 330px;
+  height: 100%;
   min-height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .side-bar_background {
@@ -34,17 +38,8 @@
     height: 100%;
     background: #f4eeea;
     background: var(--beige);
-    overflow-y: auto;
     z-index: 11;
-    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-
     transition: all 0.3s 0.1s cubic-bezier(0.165, 0.84, 0.44, 1); /* easing: outQuart */
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .side-bar::-webkit-scrollbar {
-    display: none;
   }
 
   .side-bar.side-bar__open {

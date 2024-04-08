@@ -41,6 +41,7 @@
 }
 
 .select-items li {
+  word-wrap: break-word;
 }
 
 .select-items li a {

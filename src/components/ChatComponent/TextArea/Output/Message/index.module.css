@@ -1,6 +1,7 @@
 @import 'src/utils/colors.css';
 
 .message {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -12,6 +13,7 @@
   min-width: 100%;
   height: auto;
   font-size: 1.125rem; /* 18px */
+  overflow: hidden;
 }
 
 .message-logo {
