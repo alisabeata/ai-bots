@@ -8,6 +8,8 @@ import React, {
 } from 'react'
 import { useDialog } from 'src/context/DialogContext'
 import { useURL } from 'src/hooks/useURL'
+import { useMic } from 'src/hooks/useMic'
+import { useVideo } from 'src/hooks/useVideo'
 import { ReactComponent as SendIcon } from 'src/images/svg/arrow-send.svg'
 import { ReactComponent as AudioIcon } from 'src/images/svg/mic.svg'
 import { ReactComponent as VideoIcon } from 'src/images/svg/camera.svg'
@@ -22,6 +24,8 @@ interface PromptProps {}
 export const Prompt: React.FC<PromptProps> = () => {
   const { initSession, addMessage } = useDialog()
   const { hash } = useURL()
+  const { activateMic } = useMic()
+  const { activateVideo } = useVideo()
   const [message, setMessage] = useState('')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -102,6 +106,14 @@ export const Prompt: React.FC<PromptProps> = () => {
     sendMessage(message)
   }
 
+  const handleMicActivation = () => {
+    activateMic()
+  }
+
+  const handleVideoActivation = () => {
+    activateVideo()
+  }
+
   useEffect(() => {
     autoResize()
   }, [])
@@ -116,6 +128,7 @@ export const Prompt: React.FC<PromptProps> = () => {
       <button
         className={classes['prompt-audio-button']}
         aria-label="audio-button"
+        onClick={handleMicActivation}
       >
         <AudioIcon />
       </button>
@@ -152,6 +165,7 @@ export const Prompt: React.FC<PromptProps> = () => {
       <button
         className={classes['prompt-video-button']}
         aria-label="video-button"
+        onClick={handleVideoActivation}
       >
         <VideoIcon />
       </button>
