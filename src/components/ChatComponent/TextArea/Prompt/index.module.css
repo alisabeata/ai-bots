@@ -1,6 +1,7 @@
 @import 'src/utils/colors.css';
 
 .prompt {
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -78,6 +79,12 @@ button.prompt-video-button {
 button.prompt-video-button path {
   fill: #212121;
   fill: var(--gray2);
+}
+
+button.prompt-stop-reading-stream {
+  position: absolute;
+  right: 1.5rem;
+  top: -4rem;
 }
 
 @media (max-width: 767px) {

@@ -111,12 +111,14 @@
 
 @media (max-width: 767px) {
   .custom-select {
-    position: static;
+    position: relative;
+    width: 100%;
+    max-width: 300px;
   }
 
   .select-selected {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
@@ -135,15 +137,15 @@
     font-size: 1.375rem;
     line-height: 1;
     display: block;
-    max-width: 280px;
+    max-width: 200px;
+    word-wrap: break-word;
   }
 
   .select-items {
     left: 0;
     right: auto;
-    margin-left: 115px;
-    width: 330px;
-    min-width: 330px;
+    width: calc(100% - 2px);
+    min-width: calc(100% - 2px);
     background: #f4eeea;
     background: var(--beige);
     border: 1px solid #ddd7d1;

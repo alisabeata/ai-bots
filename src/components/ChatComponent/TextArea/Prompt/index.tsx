@@ -12,6 +12,7 @@ import { ReactComponent as SendIcon } from 'src/images/svg/arrow-send.svg'
 import { ReactComponent as AudioIcon } from 'src/images/svg/mic.svg'
 import { ReactComponent as VideoIcon } from 'src/images/svg/camera.svg'
 import { ReactComponent as FileIcon } from 'src/images/svg/file.svg'
+// import { ReactComponent as PauseIcon } from 'src/images/svg/pause.svg'
 import imgAvatar from 'src/images/ghost-avatar.png'
 import classes from './index.module.css'
 import type { MessageType, TypeMessageType } from 'src/context/DialogContext'
@@ -19,8 +20,7 @@ import type { MessageType, TypeMessageType } from 'src/context/DialogContext'
 interface PromptProps {}
 
 export const Prompt: React.FC<PromptProps> = () => {
-  const { initSession } = useDialog()
-  const { addMessage } = useDialog()
+  const { initSession, addMessage } = useDialog()
   const { hash } = useURL()
   const [message, setMessage] = useState('')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -134,6 +134,12 @@ export const Prompt: React.FC<PromptProps> = () => {
       <button className={classes['prompt-video-button']}>
         <VideoIcon />
       </button>
+      {/* <button
+        className={classes['prompt-stop-reading-stream']}
+        onClick={handleStopReadingStream}
+      >
+        <PauseIcon />
+      </button> */}
     </form>
   )
 }

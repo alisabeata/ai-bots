@@ -153,12 +153,14 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
           payload: initMessage,
         })
       }
+
       if (type === 'open') {
         dispatch({
           type: 'ADD_MESSAGE',
           payload: { ...initMessage, text: message },
         })
       }
+
       if (type === 'stream') {
         dispatch({ type: 'ADD_STREAM_MESSAGE', payload: message })
       }
@@ -258,13 +260,13 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
     [id, updateHash, updateSessionsList, addMessage],
   )
 
-  const addNewChat = () => {
+  const addNewChat = useCallback(() => {
     updateHash('')
     dispatch({
       type: 'RESET_CHAT',
     })
     showBotMessage('', 'greeting')
-  }
+  }, [showBotMessage, updateHash])
 
   const resetChat = useCallback(() => {
     dispatch({
