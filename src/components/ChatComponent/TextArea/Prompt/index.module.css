@@ -88,16 +88,17 @@ button.prompt-stop-reading-stream {
 }
 
 @media (max-width: 767px) {
-  button.prompt-video-button {
+  button.prompt-submit {
     background: #212121;
     background: var(--gray2);
   }
 
-  button.prompt-video-button path {
+  button.prompt-submit path {
     fill: white;
+    opacity: 1;
   }
 
-  button.prompt-submit {
+  button.prompt-video-button {
     display: none;
   }
 }
