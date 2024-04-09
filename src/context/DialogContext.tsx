@@ -25,7 +25,7 @@ export type TypeMessageType = 'text' | 'file' | 'audio' | 'video'
 export type MessageType = {
   id: number
   text: string
-  sender: { url: string; type: string }
+  sender: { url: string; type: 'bot' | 'user' }
   type: TypeMessageType
 }
 

@@ -14,7 +14,7 @@ export const Dialog: React.FC = () => {
   }
 
   return (
-    <div className={dialogClasses}>
+    <div className={dialogClasses} data-testid="dialog">
       {messages.map((message: MessageType, id) => (
         <Message key={id} {...message} />
       ))}

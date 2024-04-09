@@ -1,19 +1,16 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import { Prompt } from './index'
-import { useDialog } from 'src/context/DialogContext'
-import { useURL } from 'src/hooks/useURL'
-
-jest.mock('src/context/DialogContext')
-jest.mock('src/hooks/useURL')
 
 describe('Prompt', () => {
   beforeEach(() => {
-    ;(useDialog as any).mockReturnValue({
-      initSession: jest.fn(),
-      addMessage: jest.fn(),
-    })
-    ;(useURL as any).mockReturnValue({
+    jest
+      .spyOn(require('src/context/DialogContext'), 'useDialog')
+      .mockReturnValue({
+        initSession: jest.fn(),
+        addMessage: jest.fn(),
+      })
+    jest.spyOn(require('src/hooks/useURL'), 'useURL').mockReturnValue({
       hash: 'someHash',
     })
   })
