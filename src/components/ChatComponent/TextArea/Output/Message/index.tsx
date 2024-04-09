@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './index.module.css'
 import { ReactComponent as FileIcon } from 'src/images/svg/file.svg'
 import type { MessageType } from 'src/context/DialogContext'
 
 export const Message: React.FC<MessageType> = ({ sender, type, text }) => {
+  const [showText, setShowText] = useState(false)
+
+  console.log(sender)
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setShowText(true)
+    }, 500)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [])
+
+  let messageClasses = classes.message
+
+  if ((!showText && sender.type === 'bot') || text.length === 0) {
+    messageClasses += ` ${classes['message_typing']}`
+  }
+
   return (
-    <div className={classes.message}>
+    <div className={messageClasses}>
       <div className={classes['message-logo']}>
-        <img src={sender} alt="" />
+        <img src={sender.url} alt="" />
       </div>
       {type === 'file' && (
         <div

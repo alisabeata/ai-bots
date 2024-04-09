@@ -33,7 +33,7 @@ export const Prompt: React.FC<PromptProps> = () => {
         const newMessage: MessageType = {
           id: Date.now(),
           text: messageContent.trim(),
-          sender: imgAvatar,
+          sender: { url: imgAvatar, type: 'user' },
           type: type ? type : 'text',
         }
 

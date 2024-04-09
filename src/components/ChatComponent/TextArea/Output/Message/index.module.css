@@ -1,5 +1,17 @@
 @import 'src/utils/colors.css';
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .message {
   position: relative;
   display: flex;
@@ -14,6 +26,22 @@
   height: auto;
   font-size: 1.125rem; /* 18px */
   overflow: hidden;
+}
+
+.message.message_typing::after {
+  content: '';
+  position: absolute;
+  left: 60px;
+  top: 12px;
+  background: #2b2b2b;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.message.message_typing .message-text {
+  display: none;
 }
 
 .message-logo {
@@ -34,9 +62,11 @@
 }
 
 .message-text {
+  position: relative;
   width: calc(100% - 42px - 1rem);
   word-wrap: break-word;
   margin-top: 10px;
+  z-index: 3;
 }
 
 .message-text__file {

@@ -15,7 +15,7 @@ import { readStream } from 'src/utils/readStream'
 export const initMessage: MessageType = {
   id: Date.now(),
   text: 'Hello! What’s on your mind?',
-  sender: img2,
+  sender: { url: img2, type: 'bot' },
   type: 'text',
 }
 
@@ -25,7 +25,7 @@ export type TypeMessageType = 'text' | 'file' | 'audio' | 'video'
 export type MessageType = {
   id: number
   text: string
-  sender: string
+  sender: { url: string; type: string }
   type: TypeMessageType
 }
 
