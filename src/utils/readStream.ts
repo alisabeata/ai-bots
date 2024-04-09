@@ -10,13 +10,16 @@ async function* readStream(response: Response): AsyncGenerator<string> {
     }
 
     // Decode the chunk
-    const decodedChunk = decoder.decode(value, { stream: true })
+    const decodedChunk = decoder
+      .decode(value, { stream: true })
+      .trim()
+      .split('\n\n')
 
     try {
       // Attempt to parse the chunk as JSON
-      console.log(decodedChunk)
-      const parsedData = JSON.parse(String(decodedChunk).replace(/\\[1]/g, ''))
-
+      const parsedData = JSON.parse(
+        String(decodedChunk[decodedChunk.length - 1]),
+      )
       // Yield the content
       yield parsedData.content
     } catch (error) {
