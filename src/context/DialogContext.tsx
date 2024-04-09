@@ -2,17 +2,19 @@ import React, {
   createContext,
   useCallback,
   useReducer,
-  useState,
   useContext,
   ReactNode,
+  useEffect,
 } from 'react'
+import { useURL } from 'src/hooks/useURL'
+import { useDialogSessions } from './ChatSessionsContext'
 import img2 from 'src/images/img2.png'
 import { readStream } from 'src/utils/readStream'
 
 // TODO: change to the actual data
 export const initMessage: MessageType = {
   id: Date.now(),
-  text: 'Hey, cuttie! What’s on your mind?',
+  text: 'Hello! What’s on your mind?',
   sender: img2,
   type: 'text',
 }
@@ -32,8 +34,12 @@ type State = {
 }
 
 type Action = {
-  type: 'ADD_MESSAGE' | 'ADD_STREAM_MESSAGE' | 'ADD_CLOSE_MESSAGE'
-  payload: MessageType | string
+  type:
+    | 'ADD_MESSAGE'
+    | 'ADD_STREAM_MESSAGE'
+    | 'ADD_CLOSE_MESSAGE'
+    | 'RESET_CHAT'
+  payload?: MessageType | string
 }
 
 const initialState: State = {
@@ -96,29 +102,32 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         messages: closeMessages,
       }
+    case 'RESET_CHAT':
+      // Reset the state
+      return {
+        ...state,
+        messages: [],
+      }
+
     default:
       return state
   }
 }
-
-type sessionBotType = { access_key: string; name: string }
 
 interface DialogContextType {
   state: State
   addMessage: (message: MessageType, access_key: string) => void
   showBotMessage: (message: string, type: string) => void
   initSession: (message: MessageType) => Promise<void>
-  sessionBot: sessionBotType
+  resetChat: () => void
 }
-
-const initSessionBot = { access_key: '', name: '' }
 
 const initDialogContext = {
   state: initialState,
   addMessage: (message: MessageType) => {},
   showBotMessage: (message: string, type: string) => {},
   initSession: async (message: MessageType) => {},
-  sessionBot: initSessionBot,
+  resetChat: () => {},
 }
 
 // Create Context
@@ -130,11 +139,18 @@ type DialogProviderProps = {
 }
 
 const DialogProvider = ({ children, id }: DialogProviderProps) => {
+  const { loadData: updateSessionsList } = useDialogSessions()
+  const { updateHash, pathname } = useURL()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [sessionBot, setSessionBot] = useState(initSessionBot)
 
   const showBotMessage = useCallback(
-    (message: string, type: 'open' | 'close' | 'stream' | any) => {
+    (message: string, type: 'greeting' | 'open' | 'close' | 'stream' | any) => {
+      if (type === 'greeting') {
+        dispatch({
+          type: 'ADD_MESSAGE',
+          payload: initMessage,
+        })
+      }
       if (type === 'open') {
         dispatch({
           type: 'ADD_MESSAGE',
@@ -160,7 +176,7 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
       })
 
       try {
-        // Async POST request to the backend
+        // response as a ReadableStream
         const response = await fetch(
           `${process.env.REACT_APP_API_ENDPOINT}/chat_sessions/${access_key}/messages`,
           {
@@ -224,21 +240,37 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
         }
 
         const data = await response.json()
-        setSessionBot(data.chat_session)
+
+        // add access_key as hash
+        updateHash(data.chat_session.access_key)
+
+        // update the sessions list
+        updateSessionsList()
 
         // send message
         addMessage(message, data.chat_session.access_key)
       } catch (error) {
         console.log('Error: ', error)
-        setSessionBot(initSessionBot)
       }
     },
-    [addMessage, id],
+    [id, updateHash, updateSessionsList, addMessage],
   )
+
+  const resetChat = useCallback(() => {
+    dispatch({
+      type: 'RESET_CHAT',
+    })
+    showBotMessage('', 'greeting')
+  }, [showBotMessage])
+
+  // Reset chat when pathname changes
+  useEffect(() => {
+    resetChat()
+  }, [pathname, resetChat])
 
   return (
     <DialogContext.Provider
-      value={{ state, addMessage, showBotMessage, initSession, sessionBot }}
+      value={{ state, addMessage, showBotMessage, initSession, resetChat }}
     >
       {children}
     </DialogContext.Provider>

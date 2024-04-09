@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import { DialogProvider } from 'src/context/DialogContext'
 import { ChatSessionsProvider } from 'src/context/ChatSessionsContext'
 import { Navigation } from 'src/components/Navigation'
 import { ChatComponent } from 'src/components/ChatComponent'
+import { useURL } from 'src/hooks/useURL'
 import classes from './index.module.css'
 
 export const Chat = () => {
-  const params = useParams()
-  const id = params.id
+  const { id } = useURL()
 
   useEffect(() => {
     document.body.classList.add('chat', 'dark-mode')

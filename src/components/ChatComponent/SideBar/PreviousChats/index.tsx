@@ -18,7 +18,9 @@ export const PreviousChats = () => {
             )}
             <ol className={classes['previous-chats_list']}>
               {chatSessions.map((session) => (
-                <ChatItem key={session.access_key}>{session.name}</ChatItem>
+                <ChatItem key={session.access_key} hash={session.access_key}>
+                  {session.name}
+                </ChatItem>
               ))}
             </ol>
           </div>

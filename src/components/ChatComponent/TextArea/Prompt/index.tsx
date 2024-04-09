@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 import { useDialog } from 'src/context/DialogContext'
-import { useDialogSessions } from 'src/context/ChatSessionsContext'
+import { useURL } from 'src/hooks/useURL'
 import { ReactComponent as SendIcon } from 'src/images/svg/arrow-send.svg'
 import { ReactComponent as AudioIcon } from 'src/images/svg/mic.svg'
 import { ReactComponent as VideoIcon } from 'src/images/svg/camera.svg'
@@ -19,8 +19,9 @@ import type { MessageType, TypeMessageType } from 'src/context/DialogContext'
 interface PromptProps {}
 
 export const Prompt: React.FC<PromptProps> = () => {
-  const { initSession, sessionBot } = useDialog()
+  const { initSession } = useDialog()
   const { addMessage } = useDialog()
+  const { hash } = useURL()
   const [message, setMessage] = useState('')
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -28,9 +29,6 @@ export const Prompt: React.FC<PromptProps> = () => {
 
   const sendMessage = useCallback(
     (messageContent: string, type?: TypeMessageType) => {
-      const accessKey =
-        sessionBot.access_key
-
       if (messageContent.trim().length > 0) {
         const newMessage: MessageType = {
           id: Date.now(),
@@ -38,16 +36,16 @@ export const Prompt: React.FC<PromptProps> = () => {
           sender: imgAvatar,
           type: type ? type : 'text',
         }
-        
-        if (!accessKey) {
+
+        if (!hash) {
           initSession(newMessage)
         } else {
-          addMessage(newMessage, accessKey)
+          addMessage(newMessage, hash)
         }
         resetTextArea()
       }
     },
-    [addMessage, initSession, sessionBot.access_key],
+    [hash, addMessage, initSession],
   )
 
   const handleFileChange = useCallback(

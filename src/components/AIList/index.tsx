@@ -89,7 +89,7 @@ export const AIList: React.FC<AIListProps> = ({
                 className={ind >= 9 ? classes.animated : ''}
                 ref={ind === filteredItems.length - 1 ? listEndRef : null}
               >
-                <Link to={`/chat/${item.id}#${item.name}`}>
+                <Link to={`/chat/${item.id}&${item.name}`}>
                   <span className={classes['ai-list_number']}>{ind + 1}</span>
                   {item.image ? (
                     <img
