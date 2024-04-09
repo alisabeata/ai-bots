@@ -6,8 +6,8 @@ export const useURL = () => {
   const location = useLocation() // Get current location
 
   const url = useMemo(() => {
-    const id = params.id!.split('&')[0]
-    const name = params.id!.split('&')[1] // queryParams
+    const id = (params.id || '').split('&')[0]
+    const name = (params.id || '').split('&')[1] || '' // queryParams
     const hash = location.hash.substring(1)
     const pathname = location.pathname
 

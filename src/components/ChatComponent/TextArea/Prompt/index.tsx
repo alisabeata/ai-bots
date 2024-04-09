@@ -107,13 +107,26 @@ export const Prompt: React.FC<PromptProps> = () => {
   }, [])
 
   return (
-    <form className={classes.prompt} onSubmit={handleSubmit} ref={formRef}>
-      <button className={classes['prompt-audio-button']}>
+    <form
+      className={classes.prompt}
+      onSubmit={handleSubmit}
+      ref={formRef}
+      aria-label="form"
+    >
+      <button
+        className={classes['prompt-audio-button']}
+        aria-label="audio-button"
+      >
         <AudioIcon />
       </button>
       <div className={classes['prompt-input']}>
         <label htmlFor="fileInput" className={classes['prompt-input_file']}>
-          <input type="file" id="fileInput" onChange={handleFileChange} />
+          <input
+            type="file"
+            id="fileInput"
+            onChange={handleFileChange}
+            aria-label="file-input"
+          />
           <FileIcon />
         </label>
         <textarea
@@ -126,12 +139,20 @@ export const Prompt: React.FC<PromptProps> = () => {
             handleKeyDown(event)
           }}
           value={message}
+          aria-label="message-textarea"
         />
       </div>
-      <button className={classes['prompt-submit']} type="submit">
+      <button
+        className={classes['prompt-submit']}
+        type="submit"
+        aria-label="submit-button"
+      >
         <SendIcon />
       </button>
-      <button className={classes['prompt-video-button']}>
+      <button
+        className={classes['prompt-video-button']}
+        aria-label="video-button"
+      >
         <VideoIcon />
       </button>
       {/* <button

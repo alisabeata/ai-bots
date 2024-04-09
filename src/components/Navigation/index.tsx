@@ -32,8 +32,8 @@ export const Navigation: React.FC<NavigationProps> = ({
   }
 
   return (
-    <nav className={navigationClasses}>
-      <a href="/">
+    <nav className={navigationClasses} aria-label="Main navigation">
+      <a href="/" aria-label="Home">
         <img src={logo} alt="Iris" className={classes.logo} />
       </a>
       <div className={classes['navigation-buttons']}>
@@ -41,6 +41,7 @@ export const Navigation: React.FC<NavigationProps> = ({
           <div
             style={{ backgroundImage: `url(${ghost})` }}
             className={classes.avatar}
+            aria-label="User Avatar"
           />
           <div className={classes['login_name']}>
             <span>Cute Ghost</span>
@@ -55,6 +56,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               padding: '0.2rem 0.5rem',
               marginLeft: '1rem',
             }}
+            aria-label="Create Account Button"
           >
             create account
           </Button>
