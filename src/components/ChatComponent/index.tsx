@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useDialog } from 'src/context/DialogContext'
 import { SideBar } from './SideBar'
 import { TextArea } from './TextArea'
 import { SelectChat } from 'src/components/Utils/SelectChat'
@@ -8,6 +9,11 @@ import { ReactComponent as EditIcon } from 'src/images/svg/edit.svg'
 
 export const ChatComponent = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { addNewChat } = useDialog()
+
+  const handleNewChat = () => {
+    addNewChat()
+  }
 
   const handleOpen = () => {
     setIsOpen(true)
@@ -24,7 +30,7 @@ export const ChatComponent = () => {
           <ShowMenuIcon />
         </button>
         <SelectChat />
-        <button className={classes['new-chat']}>
+        <button className={classes['new-chat']} onClick={handleNewChat}>
           <EditIcon />
         </button>
       </div>

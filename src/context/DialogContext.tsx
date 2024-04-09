@@ -120,6 +120,7 @@ interface DialogContextType {
   showBotMessage: (message: string, type: string) => void
   initSession: (message: MessageType) => Promise<void>
   resetChat: () => void
+  addNewChat: () => void
 }
 
 const initDialogContext = {
@@ -128,6 +129,7 @@ const initDialogContext = {
   showBotMessage: (message: string, type: string) => {},
   initSession: async (message: MessageType) => {},
   resetChat: () => {},
+  addNewChat: () => {},
 }
 
 // Create Context
@@ -256,6 +258,14 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
     [id, updateHash, updateSessionsList, addMessage],
   )
 
+  const addNewChat = () => {
+    updateHash('')
+    dispatch({
+      type: 'RESET_CHAT',
+    })
+    showBotMessage('', 'greeting')
+  }
+
   const resetChat = useCallback(() => {
     dispatch({
       type: 'RESET_CHAT',
@@ -270,7 +280,14 @@ const DialogProvider = ({ children, id }: DialogProviderProps) => {
 
   return (
     <DialogContext.Provider
-      value={{ state, addMessage, showBotMessage, initSession, resetChat }}
+      value={{
+        state,
+        addMessage,
+        showBotMessage,
+        initSession,
+        resetChat,
+        addNewChat,
+      }}
     >
       {children}
     </DialogContext.Provider>

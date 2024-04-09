@@ -63,3 +63,13 @@
   margin-right: 0.5rem;
   opacity: 0.8;
 }
+
+@media (max-width: 767px) {
+  .message-text__file-content {
+    background: #ddd7d1;
+  }
+
+  .message-text__file-content path {
+    fill: black;
+  }
+}

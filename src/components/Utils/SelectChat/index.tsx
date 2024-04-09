@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useURL } from 'src/hooks/useURL'
 import { Link } from 'react-router-dom'
 import { ReactComponent as ArrowIcon } from 'src/images/svg/arrow.svg'
 import { ReactComponent as ArrowRoundIcon } from 'src/images/svg/arrow-mobile.svg'
@@ -11,9 +12,10 @@ interface SelectChatProps {
 }
 
 export const SelectChat: React.FC<SelectChatProps> = ({ callback }) => {
-  const { charactersData, isLoading } = usePersonas()
+  const { name } = useURL()
+  const { charactersData } = usePersonas()
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('Monique')
+  const [selectedOption, setSelectedOption] = useState(name)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

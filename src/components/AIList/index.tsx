@@ -29,6 +29,7 @@ export const AIList: React.FC<AIListProps> = ({
 
   const handleShowMore = () => {
     setShownElements(shownElements + quantity)
+    setStopLoading(false)
   }
 
   const toggleStopHere = () => {
@@ -39,23 +40,21 @@ export const AIList: React.FC<AIListProps> = ({
     // debounce scroll event
     let timeout: null | NodeJS.Timeout = null
 
-    if (!stopLoading) {
-      timeout = setTimeout(() => {
-        const scrollPosition = window.innerHeight * 0.2
+    timeout = setTimeout(() => {
+      const scrollPosition = window.innerHeight * 0.2
 
-        if (
-          listEndRef.current &&
-          window.innerHeight + window.scrollY >=
-            document.documentElement.scrollHeight - scrollPosition &&
-          items.length > shownElements
-        ) {
-          if (!initialScroll) {
-            setInitialScroll(true)
-          }
-          setShownElements(shownElements + quantity)
+      if (
+        listEndRef.current &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - scrollPosition &&
+        items.length > shownElements
+      ) {
+        if (!initialScroll) {
+          setInitialScroll(true)
         }
-      }, 100)
-    }
+        setShownElements(shownElements + quantity)
+      }
+    }, 100)
 
     // clear the timeout on each scroll event
     return () => {
@@ -63,14 +62,17 @@ export const AIList: React.FC<AIListProps> = ({
         clearTimeout(timeout)
       }
     }
-  }, [initialScroll, stopLoading, shownElements, items])
+  }, [initialScroll, shownElements, items])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    if (!stopLoading) {
+      window.addEventListener('scroll', handleScroll)
+    }
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [handleScroll])
+  }, [handleScroll, stopLoading])
 
   return (
     <section className={classes['ai-section']}>

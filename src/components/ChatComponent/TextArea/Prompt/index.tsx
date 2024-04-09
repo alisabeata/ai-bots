@@ -37,6 +37,8 @@ export const Prompt: React.FC<PromptProps> = () => {
           type: type ? type : 'text',
         }
 
+        debugger
+
         if (!hash) {
           initSession(newMessage)
         } else {

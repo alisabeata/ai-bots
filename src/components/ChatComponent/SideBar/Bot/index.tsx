@@ -1,5 +1,6 @@
 import { Button } from 'src/components/Utils/Button'
 import { useURL } from 'src/hooks/useURL'
+import { useDialog } from 'src/context/DialogContext'
 import { SelectChat } from 'src/components/Utils/SelectChat'
 import img2 from 'src/images/img2.png'
 import { ReactComponent as PlusIcon } from 'src/images/svg/plus.svg'
@@ -13,6 +14,11 @@ interface BotProps {
 
 export const Bot: React.FC<BotProps> = ({ onClose }) => {
   const { name } = useURL()
+  const { addNewChat } = useDialog()
+
+  const handleNewChat = () => {
+    addNewChat()
+  }
 
   return (
     <div className={classes.bot}>
@@ -39,7 +45,12 @@ export const Bot: React.FC<BotProps> = ({ onClose }) => {
         share {name.length < 11 ? name : 'chat'}
       </Button>
 
-      <Button white fullSize className={classes['new-chat']}>
+      <Button
+        white
+        fullSize
+        className={classes['new-chat']}
+        onClick={handleNewChat}
+      >
         <PlusIcon /> new chat
       </Button>
     </div>

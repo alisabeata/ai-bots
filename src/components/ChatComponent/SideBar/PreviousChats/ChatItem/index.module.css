@@ -85,4 +85,8 @@
     background: #ddd7d1;
     background: var(--darkBeige2);
   }
+
+  .chat-item:hover .chat-item_hover {
+    display: none;
+  }
 }

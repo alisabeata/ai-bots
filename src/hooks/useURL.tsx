@@ -12,7 +12,17 @@ export const useURL = () => {
     const pathname = location.pathname
 
     const updateHash = (newHash: string) => {
+      // add hash
       window.location.hash = newHash
+
+      if (!newHash) {
+        // remove hash
+        window.history.pushState(
+          '',
+          document.title,
+          window.location.pathname + window.location.search,
+        )
+      }
     }
 
     return {
