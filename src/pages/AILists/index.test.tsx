@@ -1,10 +1,12 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import { AILists } from './index'
-import { MOCK_BOTS } from '../../components/Mocks'
+import { BrowserRouter } from 'react-router-dom'
+import { PersonasProvider } from 'src/context/PersonasContext'
+import { MOCK_BOTS } from 'src/components/Mocks'
 
 // Mock the fetch function
-(global as any).fetch = jest.fn(() =>
+;(global as any).fetch = jest.fn(() =>
   Promise.resolve({
     json: () =>
       Promise.resolve({ personas: [{ id: 1, name: 'Test Character' }] }),
@@ -18,7 +20,13 @@ describe('Content Component', () => {
   })
 
   it('renders properly with mock data', () => {
-    render(<AILists />)
+    render(
+      <BrowserRouter>
+        <PersonasProvider>
+          <AILists />
+        </PersonasProvider>
+      </BrowserRouter>,
+    )
 
     // Assert that the titles and descriptions are rendered
     expect(screen.getByText('Iris Characters')).toBeInTheDocument()
@@ -35,7 +43,13 @@ describe('Content Component', () => {
   })
 
   it('fetches data from the API', async () => {
-    render(<AILists />)
+    render(
+      <BrowserRouter>
+        <PersonasProvider>
+          <AILists />
+        </PersonasProvider>
+      </BrowserRouter>,
+    )
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
   })
 })

@@ -5,7 +5,6 @@ import React, {
   ReactNode,
   useContext,
 } from 'react'
-import { MOCK_CHARACTERS } from 'src/components/Mocks'
 
 export interface PersonaType {
   id: string
@@ -73,7 +72,6 @@ const PersonasProvider: React.FC<PersonasProviderProps> = ({ children }) => {
         setIsLoading(false)
       } catch (error) {
         console.log('Error: ', error)
-        setCharactersData(MOCK_CHARACTERS)
         setIsLoading(false)
       }
     }

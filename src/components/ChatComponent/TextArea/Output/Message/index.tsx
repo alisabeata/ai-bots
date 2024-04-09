@@ -6,8 +6,6 @@ import type { MessageType } from 'src/context/DialogContext'
 export const Message: React.FC<MessageType> = ({ sender, type, text }) => {
   const [showText, setShowText] = useState(false)
 
-  console.log(sender)
-
   useEffect(() => {
     const id = setTimeout(() => {
       setShowText(true)
