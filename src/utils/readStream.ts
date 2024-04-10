@@ -15,17 +15,18 @@ async function* readStream(response: Response): AsyncGenerator<string> {
       .trim()
       .split('\n\n')
 
-    try {
-      // Attempt to parse the chunk as JSON
-      const parsedData = JSON.parse(
-        String(decodedChunk[decodedChunk.length - 1]),
-      )
-      // Yield the content
-      yield parsedData.content
-    } catch (error) {
-      console.error('Error parsing JSON data: ', error)
-      // If parsing fails, continue to the next chunk
-      yield ' '
+    // Traverse the decodedChunk array
+    for (const chunk of decodedChunk) {
+      try {
+        // Attempt to parse the chunk as JSON
+        const parsedData = JSON.parse(chunk)
+        // Yield the content
+        yield parsedData.content
+      } catch (error) {
+        // If parsing fails, log error and yield a placeholder string
+        console.error('Error parsing JSON data: ', error)
+        yield ' '
+      }
     }
   }
 }
