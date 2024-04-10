@@ -1,12 +1,12 @@
 .content {
-  margin: 98px auto 60px;
-  padding: 0 50px;
+  margin: 0 auto 3.75rem;
+  padding: 6.125rem 3.125rem 0;
   max-width: 1600px;
 }
 
 @media (max-width: 520px) {
   .content {
-    padding: 0 1.5rem;
-    overflow: hidden;
+    padding: 6.125rem 1.5rem 0;
+    overflow-x: hidden;
   }
 }

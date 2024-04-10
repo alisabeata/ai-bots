@@ -103,6 +103,7 @@
   font-weight: 400;
   line-height: 1;
   margin: 0 0 10px;
+  word-break: break-word;
 }
 
 .ai-list_descr {
@@ -111,6 +112,7 @@
   line-height: 1;
   color: #828181;
   margin: 0;
+  word-break: break-word;
 }
 
 .show-button {
