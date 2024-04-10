@@ -6,24 +6,24 @@ async function* readStream(response: Response): AsyncGenerator<string> {
   while (true) {
     const { done, value } = await reader.read()
     if (done) {
-      break // Stream has ended
+      break // stream has ended
     }
 
-    // Decode the chunk
+    // decode the chunk
     const decodedChunk = decoder
       .decode(value, { stream: true })
       .trim()
       .split('\n\n')
 
-    // Traverse the decodedChunk array
+    // traverse the decodedChunk array
     for (const chunk of decodedChunk) {
       try {
-        // Attempt to parse the chunk as JSON
+        // attempt to parse the chunk as JSON
         const parsedData = JSON.parse(chunk)
-        // Yield the content
+        // yield the content
         yield parsedData.content
       } catch (error) {
-        // If parsing fails, log error and yield a placeholder string
+        // if parsing fails, log error and yield a placeholder string
         console.error('Error parsing JSON data: ', error)
         yield ' '
       }

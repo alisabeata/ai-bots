@@ -6,6 +6,7 @@ import { SelectChat } from './index'
 describe('SelectChat component', () => {
   beforeEach(() => {
     // Moks
+    jest.clearAllMocks()
     jest
       .spyOn(require('src/context/PersonasContext'), 'usePersonas')
       .mockReturnValue({

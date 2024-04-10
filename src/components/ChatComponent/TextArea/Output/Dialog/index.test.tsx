@@ -3,8 +3,26 @@ import { render, screen } from '@testing-library/react'
 import { Dialog } from './index'
 import * as DialogContext from 'src/context/DialogContext'
 
+// Types
+type Message = {
+  sender: {
+    type: string
+    url: string
+  }
+  type: string
+  text: string
+}
+
+type DialogState = {
+  messages: Message[]
+}
+
+type UseDialogReturn = {
+  state: DialogState
+}
+
 describe('Dialog component', () => {
-  let useDialogSpy: any
+  let useDialogSpy: jest.SpyInstance<UseDialogReturn, []>
 
   beforeEach(() => {
     // Spy on useDialog hook
@@ -18,7 +36,7 @@ describe('Dialog component', () => {
 
   it('renders dialog correctly with messages', () => {
     // Mock state with messages
-    const mockMessages = [
+    const mockMessages: Message[] = [
       {
         sender: {
           type: 'user',
@@ -49,7 +67,7 @@ describe('Dialog component', () => {
 
   it('applies offset class when there are more than one message', () => {
     // Mock state with multiple messages
-    const mockMessages = [
+    const mockMessages: Message[] = [
       {
         sender: {
           type: 'user',

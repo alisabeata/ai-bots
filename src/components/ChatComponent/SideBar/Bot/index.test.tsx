@@ -2,8 +2,10 @@ import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import { Bot } from './index'
 
+
 describe('Bot component', () => {
   beforeEach(() => {
+    jest.clearAllMocks()
     // Moks
     jest
       .spyOn(require('src/context/DialogContext'), 'useDialog')
@@ -19,7 +21,7 @@ describe('Bot component', () => {
   it('renders bot card with correct content', () => {
     render(<Bot onClose={jest.fn()} />)
 
-    const h2Element = screen.getByRole('heading', { level: 2 }) // Assuming 'TestBot' is the content of the <h2> element
+    const h2Element = screen.getByRole('heading', { level: 2 }) // assume: 'TestBot' is the content of the <h2> element
     expect(h2Element).toBeInTheDocument()
     expect(h2Element).toHaveTextContent('TestBot')
   })

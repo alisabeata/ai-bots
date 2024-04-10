@@ -1,16 +1,17 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { PersonasProvider } from 'src/context/PersonasContext'
 import { Navigation } from './index'
+
+jest.mock('src/context/PersonasContext', () => ({
+  DialogProvider: ({ children }: { children: React.ReactNode }) => children,
+}))
 
 describe('Navigation Component', () => {
   it('renders logo and login link with correct attributes', () => {
     render(
       <BrowserRouter>
-        <PersonasProvider>
-          <Navigation />
-        </PersonasProvider>
+        <Navigation />
       </BrowserRouter>,
     )
 

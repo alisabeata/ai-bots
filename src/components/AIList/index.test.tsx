@@ -3,8 +3,11 @@ import { screen, render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { AIList } from './index'
 import { BrowserRouter } from 'react-router-dom'
-import { PersonasProvider } from 'src/context/PersonasContext'
 import { MOCK_CHARACTERS } from 'src/components/Mocks'
+
+jest.mock('src/context/PersonasContext', () => ({
+  DialogProvider: ({ children }: { children: React.ReactNode }) => children,
+}))
 
 describe('AIList component', () => {
   const title = 'Test Title'
@@ -13,16 +16,14 @@ describe('AIList component', () => {
   it('renders the component properly', () => {
     render(
       <BrowserRouter>
-        <PersonasProvider>
-          <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
-        </PersonasProvider>
+        <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
       </BrowserRouter>,
     )
 
     expect(screen.getByText(title)).toBeInTheDocument()
     expect(screen.getByText(descr)).toBeInTheDocument()
 
-    // Check if the items are rendered
+    // check if the items are rendered
     MOCK_CHARACTERS.slice(0, 9).forEach((item) => {
       expect(screen.getByText(item.name)).toBeInTheDocument()
       expect(screen.getByAltText(item.name)).toBeInTheDocument()
@@ -33,9 +34,7 @@ describe('AIList component', () => {
   it('shows "show more" button if items exceed shownElements', () => {
     render(
       <BrowserRouter>
-        <PersonasProvider>
-          <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
-        </PersonasProvider>
+        <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
       </BrowserRouter>,
     )
 
@@ -45,15 +44,13 @@ describe('AIList component', () => {
   it('loads more items when "show more" button is clicked', () => {
     render(
       <BrowserRouter>
-        <PersonasProvider>
-          <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
-        </PersonasProvider>
+        <AIList items={MOCK_CHARACTERS} title={title} descr={descr} />
       </BrowserRouter>,
     )
 
     fireEvent.click(screen.getByText('show more'))
 
-    // Check if additional items are loaded
+    // check if additional items are loaded
     MOCK_CHARACTERS.slice(0, 18).forEach((item) => {
       expect(screen.getByText(item.name)).toBeInTheDocument()
       expect(screen.getByAltText(item.name)).toBeInTheDocument()

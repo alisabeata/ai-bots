@@ -1,6 +1,6 @@
 import { readStream } from './readStream'
 
-// Mock TextDecoder
+// Mock
 class MockTextDecoder {
   constructor(private encoding: string) {}
 
@@ -12,7 +12,7 @@ class MockTextDecoder {
   }
 }
 
-(global as any).TextDecoder = MockTextDecoder
+;(global as any).TextDecoder = MockTextDecoder
 
 describe('readStream', () => {
   test('should iterate over the stream and yield content', async () => {
@@ -30,10 +30,10 @@ describe('readStream', () => {
     mockResponse.body = { getReader: () => reader }
 
     const asyncGenerator = readStream(mockResponse)
-    const { value, done } = await asyncGenerator.next() // Read the first chunk
-    const content = value // Extract the content from the first chunk
+    const { value, done } = await asyncGenerator.next() // read the first chunk
+    const content = value // extract the content from the first chunk
 
     expect(content).toEqual('First chunk of JSON data')
-    expect(done).toEqual(false) 
+    expect(done).toEqual(false)
   })
 })

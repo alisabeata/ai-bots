@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersonasProvider } from 'src/context/PersonasContext'
 import { MOCK_BOTS } from 'src/components/Mocks'
 
-// Mock the fetch function
+// Mock
 ;(global as any).fetch = jest.fn(() =>
   Promise.resolve({
     json: () =>
@@ -28,7 +28,7 @@ describe('Content Component', () => {
       </BrowserRouter>,
     )
 
-    // Assert that the titles and descriptions are rendered
+    // assert: the titles and descriptions are rendered
     expect(screen.getByText('Iris Characters')).toBeInTheDocument()
     expect(screen.getByText('AIs created by Iris team')).toBeInTheDocument()
     expect(screen.getByText('Purpose Bots')).toBeInTheDocument()
@@ -36,7 +36,7 @@ describe('Content Component', () => {
       screen.getByText('AIs created to achieve your goals'),
     ).toBeInTheDocument()
 
-    // Assert that mock characters and mock bots are rendered
+    // assert: mock characters and mock bots are rendered
     MOCK_BOTS.forEach((bot) => {
       expect(screen.getByText(bot.name)).toBeInTheDocument()
     })

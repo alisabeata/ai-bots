@@ -10,6 +10,7 @@ describe('ChatComponent', () => {
   window.HTMLElement.prototype.scrollIntoView = function () {}
 
   beforeEach(() => {
+    jest.clearAllMocks()
     jest
       .spyOn(require('src/context/DialogContext'), 'useDialog')
       .mockImplementation(() => ({

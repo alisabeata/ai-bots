@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { useURL } from './useURL'
 
-// Mock useParams and useLocation
+// Mock
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
@@ -18,7 +18,7 @@ describe('useURL hook', () => {
       hash: '#testhash',
     }
 
-    // Set up mock return values for useParams and useLocation
+    // set up mock return values for useParams and useLocation
     jest
       .spyOn(require('react-router-dom'), 'useParams')
       .mockReturnValue(mockParams)
@@ -26,7 +26,7 @@ describe('useURL hook', () => {
       .spyOn(require('react-router-dom'), 'useLocation')
       .mockReturnValue(mockLocation)
 
-    // Render a component using the useURL hook
+    // render a component using the useURL hook
     const TestComponent = () => {
       const url = useURL()
       return (
@@ -45,7 +45,7 @@ describe('useURL hook', () => {
       </BrowserRouter>,
     )
 
-    // Assert that the rendered component displays the correct values
+    // assert: the rendered component displays the correct values
     expect(screen.getByTestId('id')).toHaveTextContent('123')
     expect(screen.getByTestId('name')).toHaveTextContent('example')
     expect(screen.getByTestId('hash')).toHaveTextContent('testhash')

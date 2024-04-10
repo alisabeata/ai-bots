@@ -5,6 +5,8 @@ import { ChatItem } from './index'
 
 describe('ChatItem Component', () => {
   beforeEach(() => {
+    jest.clearAllMocks()
+    // Moks
     jest
       .spyOn(require('src/context/DialogContext'), 'useDialog')
       .mockReturnValue({
