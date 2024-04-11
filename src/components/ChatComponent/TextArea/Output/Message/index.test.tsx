@@ -5,7 +5,7 @@ import { MessageType } from 'src/context/DialogContext'
 
 describe('Message component', () => {
   const mockMessage: MessageType = {
-    id: 1,
+    id: '1',
     sender: {
       type: 'user',
       url: 'user-avatar-url',

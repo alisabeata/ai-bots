@@ -6,6 +6,7 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { useURL } from 'src/hooks/useURL'
 import { useDialogSessions } from './ChatSessionsContext'
 import img2 from 'src/images/img2.png'
@@ -13,7 +14,7 @@ import { readStream } from 'src/utils/readStream'
 
 // TODO: change to the actual data
 export const initMessage: MessageType = {
-  id: Date.now(),
+  id: uuidv4(),
   text: 'Hello! What’s on your mind?',
   sender: { url: img2, type: 'bot' },
   type: 'text',
@@ -23,7 +24,7 @@ export const initMessage: MessageType = {
 export type TypeMessageType = 'text' | 'file' | 'audio' | 'video'
 
 export type MessageType = {
-  id: number
+  id: string
   text: string
   sender: { url: string; type: 'bot' | 'user' }
   type: TypeMessageType

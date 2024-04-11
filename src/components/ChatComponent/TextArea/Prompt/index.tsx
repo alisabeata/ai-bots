@@ -6,6 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { useDialog } from 'src/context/DialogContext'
 import { useURL } from 'src/hooks/useURL'
 import { useMic } from 'src/hooks/useMic'
@@ -35,7 +36,7 @@ export const Prompt: React.FC<PromptProps> = () => {
     (messageContent: string, type?: TypeMessageType) => {
       if (messageContent.trim().length > 0) {
         const newMessage: MessageType = {
-          id: Date.now(),
+          id: uuidv4(),
           text: messageContent.trim(),
           sender: { url: imgAvatar, type: 'user' },
           type: type ? type : 'text',
