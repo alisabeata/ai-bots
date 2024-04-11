@@ -1,9 +1,10 @@
 import { useMemo } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 
 export const useURL = () => {
   const params = useParams() // Get URL parameters
   const location = useLocation() // Get current location
+  const history = useNavigate() // History
 
   const url = useMemo(() => {
     const id = (params.id || '').split('&')[0]
@@ -12,17 +13,7 @@ export const useURL = () => {
     const pathname = location.pathname
 
     const updateHash = (newHash: string) => {
-      // add hash
-      window.location.hash = newHash
-
-      if (!newHash) {
-        // remove hash
-        window.history.pushState(
-          '',
-          document.title,
-          window.location.pathname + window.location.search,
-        )
-      }
+      history(`${pathname}${location.search}#${newHash}`, { replace: true })
     }
 
     return {
@@ -32,7 +23,7 @@ export const useURL = () => {
       pathname,
       updateHash,
     }
-  }, [params, location.hash, location.pathname])
+  }, [params.id, location.hash, location.pathname, location.search, history])
 
   return url
 }
