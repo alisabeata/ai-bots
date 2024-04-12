@@ -8,23 +8,28 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
   useLocation: jest.fn(),
+  useNavigate: jest.fn(),
 }))
 
 describe('useURL hook', () => {
   it('returns correct URL object', () => {
-    const mockParams = { id: '123&example' }
+    const mockParams = { id: '123' }
     const mockLocation = {
-      pathname: '/example/path',
       hash: '#testhash',
+      pathname: '/example/path',
+      search: '?name=test',
     }
 
-    // set up mock return values for useParams and useLocation
+    // set up mock return values
     jest
       .spyOn(require('react-router-dom'), 'useParams')
       .mockReturnValue(mockParams)
     jest
       .spyOn(require('react-router-dom'), 'useLocation')
       .mockReturnValue(mockLocation)
+    jest
+      .spyOn(require('react-router-dom'), 'useNavigate')
+      .mockReturnValue(jest.fn())
 
     // render a component using the useURL hook
     const TestComponent = () => {
@@ -47,7 +52,7 @@ describe('useURL hook', () => {
 
     // assert: the rendered component displays the correct values
     expect(screen.getByTestId('id')).toHaveTextContent('123')
-    expect(screen.getByTestId('name')).toHaveTextContent('example')
+    expect(screen.getByTestId('name')).toHaveTextContent('test')
     expect(screen.getByTestId('hash')).toHaveTextContent('testhash')
     expect(screen.getByTestId('pathname')).toHaveTextContent('/example/path')
   })

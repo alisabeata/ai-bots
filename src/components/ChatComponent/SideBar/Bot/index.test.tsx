@@ -15,6 +15,7 @@ describe('Bot component', () => {
       })
     jest.spyOn(require('src/hooks/useURL'), 'useURL').mockReturnValue({
       name: 'TestBot',
+      search: '?name=TestName'
     })
   })
 

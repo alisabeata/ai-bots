@@ -2,6 +2,7 @@ import { Button } from 'src/components/Utils/Button'
 import { useURL } from 'src/hooks/useURL'
 import { useDialog } from 'src/context/DialogContext'
 import { SelectChat } from 'src/components/Utils/SelectChat'
+import { getCachedName } from 'src/utils/getCachedName'
 import img2 from 'src/images/img2.png'
 import { ReactComponent as PlusIcon } from 'src/images/svg/plus.svg'
 import { ReactComponent as CloseIcon } from 'src/images/svg/close.svg'
@@ -13,8 +14,9 @@ interface BotProps {
 }
 
 export const Bot: React.FC<BotProps> = ({ onClose }) => {
-  const { name } = useURL()
+  const { name, id } = useURL()
   const { addNewChat } = useDialog()
+  const botName = name ? name : getCachedName(id)
 
   const handleNewChat = () => {
     addNewChat()
@@ -29,7 +31,7 @@ export const Bot: React.FC<BotProps> = ({ onClose }) => {
         <div className={classes.identity}>
           <img src={img2} alt="" />
           <div className={classes['card_descr']}>
-            <h2>{name}</h2>
+            <h2>{botName}</h2>
             <p>Some text here...</p>
           </div>
         </div>
@@ -42,7 +44,7 @@ export const Bot: React.FC<BotProps> = ({ onClose }) => {
       </div>
 
       <Button whiteBorder fullSize className={classes['share-chat']}>
-        share {name.length < 11 ? name : 'chat'}
+        share {botName && botName.length < 11 ? botName : 'chat'}
       </Button>
 
       <Button

@@ -2,18 +2,19 @@ import { useMemo } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 
 export const useURL = () => {
-  const params = useParams() // Get URL parameters
-  const location = useLocation() // Get current location
-  const history = useNavigate() // History
+  const params = useParams() // get URL parameters
+  const location = useLocation() // get current location
+  const history = useNavigate() // get History
 
   const url = useMemo(() => {
-    const id = (params.id || '').split('&')[0]
-    const name = (params.id || '').split('&')[1] || '' // queryParams
-    const hash = location.hash.substring(1)
-    const pathname = location.pathname
+    const { hash, pathname, search } = location
+    const queryParams = new URLSearchParams(location.search) // get queryParams
+    const id = params.id
+    const name = queryParams.get('name')
+    
 
     const updateHash = (newHash: string) => {
-      history(`${pathname}${location.search}#${newHash}`, { replace: true })
+      history(`${pathname}${search}#${newHash}`, { replace: true })
     }
 
     return {
@@ -21,9 +22,10 @@ export const useURL = () => {
       name,
       hash,
       pathname,
+      search,
       updateHash,
     }
-  }, [params.id, location.hash, location.pathname, location.search, history])
+  }, [location, params.id, history])
 
   return url
 }

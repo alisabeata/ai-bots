@@ -77,7 +77,7 @@ export const SelectChat: React.FC<SelectChatProps> = ({ callback }) => {
             className={classes['select-item']}
             onClick={() => selectOption(persona.name)}
           >
-            <Link to={`/chat/${persona.id}&${persona.name}`}>
+            <Link to={`/chat/${persona.id}?name=${persona.name}`}>
               {persona.name}
             </Link>
           </li>

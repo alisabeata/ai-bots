@@ -12,7 +12,7 @@ interface ChatItemProps {
 
 export const ChatItem: React.FC<ChatItemProps> = ({ children, hash }) => {
   const { resetChat } = useDialog()
-  const { pathname } = useURL()
+  const { pathname, search } = useURL()
 
   const handleClick = () => {
     resetChat()
@@ -21,7 +21,7 @@ export const ChatItem: React.FC<ChatItemProps> = ({ children, hash }) => {
   return (
     <li>
       <div className={classes['chat-item']}>
-        <Link to={`${pathname}#${hash}`} onClick={handleClick}>
+        <Link to={`${pathname}${search}#${hash}`} onClick={handleClick}>
           {children}
         </Link>
         <div className={classes['chat-item_hover']}>

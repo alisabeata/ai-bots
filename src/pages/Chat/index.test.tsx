@@ -29,6 +29,7 @@ describe('Chat component', () => {
       name: '',
       hash: '',
       pathname: '',
+      search: '',
       updateHash: () => {},
     })
 
@@ -50,6 +51,7 @@ describe('Chat component', () => {
       name: '',
       hash: '',
       pathname: '',
+      search: '',
       updateHash: () => {},
     })
 

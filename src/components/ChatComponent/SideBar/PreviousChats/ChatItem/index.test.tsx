@@ -14,6 +14,7 @@ describe('ChatItem Component', () => {
       })
     jest.spyOn(require('src/hooks/useURL'), 'useURL').mockReturnValue({
       pathname: '/test',
+      search: '?name=testName'
     })
   })
 
@@ -27,6 +28,6 @@ describe('ChatItem Component', () => {
     const chatItemLink = screen.getByText('Test Children')
     fireEvent.click(chatItemLink)
 
-    expect(chatItemLink.getAttribute('href')).toBe('/test#testHash')
+    expect(chatItemLink.getAttribute('href')).toBe('/test?name=testName#testHash')
   })
 })
