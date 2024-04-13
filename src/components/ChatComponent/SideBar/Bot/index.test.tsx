@@ -2,7 +2,6 @@ import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import { Bot } from './index'
 
-
 describe('Bot component', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -15,7 +14,7 @@ describe('Bot component', () => {
       })
     jest.spyOn(require('src/hooks/useURL'), 'useURL').mockReturnValue({
       name: 'TestBot',
-      search: '?name=TestName'
+      search: '?name=TestName',
     })
   })
 

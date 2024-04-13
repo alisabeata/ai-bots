@@ -200,7 +200,8 @@ textarea {
 
 @font-face {
   font-family: 'MonumentExtended-Regular';
-  src: local('PPMonumentExtended-Regular'),
+  src:
+    local('PPMonumentExtended-Regular'),
     url('./fonts/PPMonumentExtended-Regular.woff2') format('woff');
   font-weight: 400;
   font-style: normal;
