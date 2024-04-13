@@ -8,10 +8,12 @@ export const useURL = () => {
 
   const url = useMemo(() => {
     const { hash, pathname, search } = location
+    const hashVal = hash.substring(1)
     const queryParams = new URLSearchParams(location.search) // get queryParams
     const id = params.id
     const name = queryParams.get('name')
-    
+
+    console.log(hash)
 
     const updateHash = (newHash: string) => {
       history(`${pathname}${search}#${newHash}`, { replace: true })
@@ -20,7 +22,7 @@ export const useURL = () => {
     return {
       id,
       name,
-      hash,
+      hash: hashVal,
       pathname,
       search,
       updateHash,
