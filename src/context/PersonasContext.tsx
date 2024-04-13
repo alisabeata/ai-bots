@@ -69,11 +69,10 @@ const PersonasProvider: React.FC<PersonasProviderProps> = ({ children }) => {
           setCharactersData(data.personas)
           localStorage.setItem('charactersData', JSON.stringify(data.personas))
         }
-        setIsLoading(false)
       } catch (error) {
         console.log('Error: ', error)
-        setIsLoading(false)
       }
+      setIsLoading(false)
     }
 
     loadData()

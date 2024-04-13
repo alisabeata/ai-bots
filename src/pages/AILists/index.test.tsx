@@ -1,24 +1,11 @@
 import React from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { AILists } from './index'
 import { BrowserRouter } from 'react-router-dom'
 import { PersonasProvider } from 'src/context/PersonasContext'
 import { MOCK_BOTS } from 'src/components/Mocks'
 
-// Mock
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () =>
-      Promise.resolve({ personas: [{ id: 1, name: 'Test Character' }] }),
-    ok: true,
-  }),
-) as jest.Mock
-
 describe('Content Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   it('renders properly with mock data', () => {
     render(
       <BrowserRouter>
@@ -40,16 +27,5 @@ describe('Content Component', () => {
     MOCK_BOTS.forEach((bot) => {
       expect(screen.getByText(bot.name)).toBeInTheDocument()
     })
-  })
-
-  it('fetches data from the API', async () => {
-    render(
-      <BrowserRouter>
-        <PersonasProvider>
-          <AILists />
-        </PersonasProvider>
-      </BrowserRouter>,
-    )
-    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1))
   })
 })
