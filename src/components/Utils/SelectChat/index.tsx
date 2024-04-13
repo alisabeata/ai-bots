@@ -70,19 +70,21 @@ export const SelectChat: React.FC<SelectChatProps> = ({ callback }) => {
         </div>
       </div>
 
-      <ul className={selectItemsClasses}>
-        {charactersData.map((persona: PersonaType) => (
-          <li
-            key={persona.id}
-            className={classes['select-item']}
-            onClick={() => selectOption(persona.name)}
-          >
-            <Link to={`/chat/${persona.id}?name=${persona.name}`}>
-              {persona.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {isOpen && (
+        <ul className={selectItemsClasses}>
+          {charactersData.map((persona: PersonaType) => (
+            <li
+              key={persona.id}
+              className={classes['select-item']}
+              onClick={() => selectOption(persona.name)}
+            >
+              <Link to={`/chat/${persona.id}?name=${persona.name}`}>
+                {persona.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

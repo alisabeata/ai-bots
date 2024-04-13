@@ -15,14 +15,15 @@ describe('Navigation Component', () => {
       </BrowserRouter>,
     )
 
-    // Assert that logo is rendered with correct attributes
+    // Assert that the logo is rendered with correct attributes
     const logoElement = screen.getByAltText('Iris')
     expect(logoElement).toBeInTheDocument()
     expect(logoElement).toHaveClass('logo')
 
-    // Assert that login link is rendered with correct attributes
+    // Assert that the login link is rendered with correct attributes
     const loginLink = screen.getByTitle('Log In')
     expect(loginLink).toBeInTheDocument()
     expect(loginLink).toHaveClass('login')
+    expect(loginLink).toHaveAttribute('href', '/')
   })
 })

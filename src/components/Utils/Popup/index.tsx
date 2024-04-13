@@ -16,9 +16,15 @@ const PopupOverlay: React.FC<PopupProps> = ({
 }) => (
   <div className="popup-container">
     <div className="popup">
-      <button onClick={onShare}>Share</button>
-      <button onClick={onDelete}>Delete</button>
-      <button onClick={onRename}>Rename</button>
+      <button data-testid="share-button" onClick={onShare}>
+        Share
+      </button>
+      <button data-testid="delete-button" onClick={onDelete}>
+        Delete
+      </button>
+      <button data-testid="rename-button" onClick={onRename}>
+        Rename
+      </button>
     </div>
   </div>
 )

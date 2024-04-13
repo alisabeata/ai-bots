@@ -6,7 +6,7 @@ import { Bot } from './index'
 describe('Bot component', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    // Moks
+    // Mocks
     jest
       .spyOn(require('src/context/DialogContext'), 'useDialog')
       .mockReturnValue({

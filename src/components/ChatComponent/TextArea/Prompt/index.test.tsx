@@ -4,7 +4,7 @@ import { Prompt } from './index'
 
 describe('Prompt', () => {
   beforeEach(() => {
-    // Moks
+    // Mocks
     jest.clearAllMocks()
     jest
       .spyOn(require('src/context/DialogContext'), 'useDialog')

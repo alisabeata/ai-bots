@@ -3,18 +3,24 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { ChatItem } from './index'
 
+jest.mock('src/context/DialogContext', () => ({
+  useDialog: jest.fn(),
+}))
+jest.mock('src/hooks/useURL', () => ({
+  useURL: jest.fn(),
+}))
+
 describe('ChatItem Component', () => {
+  const mockResetChat = jest.fn()
+
   beforeEach(() => {
     jest.clearAllMocks()
-    // Moks
-    jest
-      .spyOn(require('src/context/DialogContext'), 'useDialog')
-      .mockReturnValue({
-        resetChat: jest.fn(),
-      })
-    jest.spyOn(require('src/hooks/useURL'), 'useURL').mockReturnValue({
+    require('src/context/DialogContext').useDialog.mockReturnValue({
+      resetChat: mockResetChat,
+    })
+    require('src/hooks/useURL').useURL.mockReturnValue({
       pathname: '/test',
-      search: '?name=testName'
+      search: '?name=testName',
     })
   })
 
@@ -25,9 +31,13 @@ describe('ChatItem Component', () => {
       </BrowserRouter>,
     )
 
-    const chatItemLink = screen.getByText('Test Children')
+    const chatItemLink = screen.getByRole('link', { name: 'Test Children' })
     fireEvent.click(chatItemLink)
 
-    expect(chatItemLink.getAttribute('href')).toBe('/test?name=testName#testHash')
+    // Asserting the href attribute
+    expect(chatItemLink).toHaveAttribute('href', '/test?name=testName#testHash')
+
+    // Verify that resetChat was called when the link is clicked
+    expect(mockResetChat).toHaveBeenCalledTimes(1)
   })
 })
