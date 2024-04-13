@@ -6,13 +6,13 @@ import { PersonasProvider } from 'src/context/PersonasContext'
 import { MOCK_BOTS } from 'src/components/Mocks'
 
 // Mock
-;(global as any).fetch = jest.fn(() =>
+global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () =>
       Promise.resolve({ personas: [{ id: 1, name: 'Test Character' }] }),
     ok: true,
   }),
-)
+) as jest.Mock
 
 describe('Content Component', () => {
   beforeEach(() => {

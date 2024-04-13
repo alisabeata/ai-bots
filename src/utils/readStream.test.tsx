@@ -2,17 +2,17 @@ import { readStream } from './readStream'
 
 // Mock
 class MockTextDecoder {
-  constructor(private encoding: string) {}
+  constructor(private encoding: BufferEncoding) {}
 
   decode(buffer: Uint8Array): string {
     if (!buffer) {
       return ''
     }
-    return Buffer.from(buffer).toString((this as any).encoding)
+    return Buffer.from(buffer).toString(this.encoding)
   }
 }
 
-;(global as any).TextDecoder = MockTextDecoder
+global.TextDecoder = MockTextDecoder as any
 
 describe('readStream', () => {
   test('should iterate over the stream and yield content', async () => {
