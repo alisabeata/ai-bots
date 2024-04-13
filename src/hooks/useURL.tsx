@@ -13,8 +13,6 @@ export const useURL = () => {
     const id = params.id
     const name = queryParams.get('name')
 
-    console.log(hash)
-
     const updateHash = (newHash: string) => {
       history(`${pathname}${search}#${newHash}`, { replace: true })
     }
