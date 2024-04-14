@@ -1,3 +1,9 @@
+(1) CAPTURE MEDIA DEVICES -> (2) PROCESSING MODULE: based on MediaSource() ->
+   -> (3) ADD STREAM into the CHUNKS -> (4) CREATE BLOB (when the stream is ended) ->
+   -> (5) SEND BLOB (fetch post)
+
+
+
 - Capture Media (getUserMedia, WebRTC protocol)
 - Process the Media 
   (compression: 'video/webm; codecs=vp9' codec fro video,
@@ -12,6 +18,9 @@ steps:
 - Stop the recording 
 
 
+* URL.createObjectURL() - static method creates a string containing a URL representing the object given in the parameter 
+* BLOB - Binary Large Object
+* MediaSource() - represents a source of media data for an HTMLMediaElement object <video>, <audio>
 
 
 
@@ -85,7 +94,7 @@ async function recordStream() {
     console.log(blobUrl)
    }
 
-  recorder.start(200)
+  recorder.start(200) // by 200ms
 }
 
 

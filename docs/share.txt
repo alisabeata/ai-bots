@@ -2,6 +2,7 @@
    includes og tags (og:image, og:description, twitter cards etc), 
    necessary meta information to send (icon, title, description etc), 
    or additional info to collect metrics (for the inner use)
+   // or create HTML dynamically by request
    (!) in case of using Create React APP
 
 1.1. if it's just a bot info then it's possible to add og information 

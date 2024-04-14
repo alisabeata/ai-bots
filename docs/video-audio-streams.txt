@@ -1,3 +1,7 @@
+(1) RESPONSE -> (2) READ STREAM (as binary data) ->
+     -> (3) PROCESSING MODULE: based on MediaSource() (incert into the videoElement)
+
+
 1.  get stream as a binary data directly
 
 async function* readVideoStream(response: Response): AsyncGenerator<Uint8Array> {
@@ -13,7 +17,7 @@ async function* readVideoStream(response: Response): AsyncGenerator<Uint8Array> 
 }
 
 
-2. prob¡vide it to the video processing library
+2. prob¡vide it to the video processing module
 
 2.1. MediaSource Extensions (MSE)
    Appends binary chunks (Uint8Array) to the SourceBuffer as they become available
