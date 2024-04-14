@@ -42,7 +42,9 @@ const SocialShareComponent: React.FC<SocialShareProps> = ({ onClose }) => {
       ></div>
       <div className={classes['social-share_wrap']}>
         <h3>Share this page on:</h3>
-        <button className={classes['social-share_close']} onClick={onClose}>Close</button>
+        <button className={classes['social-share_close']} onClick={onClose}>
+          Close
+        </button>
         <ul>
           <li>
             <a

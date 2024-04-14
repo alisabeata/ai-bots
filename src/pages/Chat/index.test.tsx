@@ -31,6 +31,8 @@ describe('Chat component', () => {
       pathname: '',
       search: '',
       updateHash: () => {},
+      path: '',
+      url: '',
     })
 
     render(<Chat />)
@@ -53,6 +55,8 @@ describe('Chat component', () => {
       pathname: '',
       search: '',
       updateHash: () => {},
+      path: '',
+      url: '',
     })
 
     jest.spyOn(console, 'error').mockImplementation(() => {}) // expected error for missing id
