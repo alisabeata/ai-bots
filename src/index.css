@@ -243,6 +243,13 @@ body.dark-mode {
   height: 100%;
 }
 
+#portal-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 25;
+}
+
 @media (max-width: 767px) {
   body.chat.dark-mode {
     background: #f4eeea;

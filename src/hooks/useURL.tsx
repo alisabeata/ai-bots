@@ -12,9 +12,11 @@ export const useURL = () => {
     const queryParams = new URLSearchParams(location.search) // get queryParams
     const id = params.id
     const name = queryParams.get('name')
+    const path = `${pathname}${search}`
+    const url = `${pathname}${search}#${hash}`
 
     const updateHash = (newHash: string) => {
-      history(`${pathname}${search}#${newHash}`, { replace: true })
+      history(`${path}#${newHash}`, { replace: true })
     }
 
     return {
@@ -23,6 +25,8 @@ export const useURL = () => {
       hash: hashVal,
       pathname,
       search,
+      path,
+      url,
       updateHash,
     }
   }, [location, params.id, history])

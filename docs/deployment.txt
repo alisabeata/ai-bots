@@ -1,0 +1,26 @@
+Deployment should have the foloowing steps:
+- test code
+- optimize code (build-in in create react app, possible to extend 
+  like image optimization, lazy-loading if necessary etc)
+- build app for production
+- upload to the server
+- server configuration
+
+
+
+error tracking before build via es linter, 
+syntax issues prettier
+
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "clean": "rm -rf ./build",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "lint": "eslint src/ --ext .tsx",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run format:check && npm run lint && npm run test && npm run build",
+    "deploy": "gh-pages -d build"
+},

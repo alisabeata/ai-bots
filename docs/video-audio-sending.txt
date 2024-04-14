@@ -1,0 +1,116 @@
+- Capture Media (getUserMedia, WebRTC protocol)
+- Process the Media 
+  (compression: 'video/webm; codecs=vp9' codec fro video,
+  'audio/webm; codecs=opus' for audio)
+- Sending (Chunks)
+
+
+steps:
+- Camera and audio stream
+- Screen stream
+- Record the streams (compression is here)
+- Stop the recording 
+
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
+
+example: https://codepen.io/antopiras89/pen/mdWEExX
+
+
+- Camera and audio stream
+
+let mediaConstraints = {
+  video: {
+    width: 1280,
+    height: 720
+  },
+  audio: {
+    echoCancellation: true,
+    noiseSuppression: true,
+    sampleRate: 44100
+  }
+}
+
+async function captureMediaDevices() {
+  const stream = await navigator.mediaDevices.getUserMedia(mediaConstraints)
+  return stream
+}
+
+
+
+- Screen stream
+
+async function captureScreen() {
+  mediaConstraints = {
+    video: {
+      cursor: 'always',
+      resizeMode: 'crop-and-scale'
+    }
+  }
+
+  const screenStream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints)
+  return screenStream
+}
+
+
+
+
+- Record the streams
+
+let recorder = null
+
+async function recordStream() {
+  const stream = await captureMediaDevices()
+  recorder = new MediaRecorder(stream)
+  let chunks = []
+
+  recorder.ondataavailable = event => {
+    if (event.data.size > 0) {
+      chunks.push(event.data)
+    }
+  }
+
+  recorder.onstop = () => {
+    // Binary Large Object
+    const blob = new Blob(chunks, {
+      type: 'video/webm;codecs=vp9'
+    })
+
+    chunks = []
+    const blobUrl = URL.createObjectURL(blob)
+
+    console.log(blobUrl)
+   }
+
+  recorder.start(200)
+}
+
+
+- Stop the recording 
+
+function stopRecording() {
+ recorder.stream.getTracks().forEach(track => track.stop())
+}
+
+
+
+
+- Video compression
+
+const options = { mimeType: 'video/webm; codecs=vp9' }; // Using VP9 codec for compression
+const mediaRecorder = new MediaRecorder(stream, options);
+
+mediaRecorder.ondataavailable = function(e) {
+  // e.data contains the compressed video blob
+};
+
+mediaRecorder.start();
+
+
+- Audio compression 
+
+const options = { mimeType: 'audio/webm; codecs=opus' }; // Using Opus codec for compression
+const mediaRecorder = new MediaRecorder(audioStream, options);

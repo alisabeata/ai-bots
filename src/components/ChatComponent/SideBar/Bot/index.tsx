@@ -8,6 +8,8 @@ import { ReactComponent as PlusIcon } from 'src/images/svg/plus.svg'
 import { ReactComponent as CloseIcon } from 'src/images/svg/close.svg'
 import { ReactComponent as LogoIcon } from 'src/images/svg/logo.svg'
 import classes from './index.module.css'
+import { SocialShare } from 'src/components/Utils/SocialShare'
+import { useState } from 'react'
 
 interface BotProps {
   onClose: () => void
@@ -17,6 +19,15 @@ export const Bot: React.FC<BotProps> = ({ onClose }) => {
   const { name, id } = useURL()
   const { addNewChat } = useDialog()
   const botName = name ? name : getCachedName(id)
+  const [shownSharePopup, setIsShownSharePopup] = useState(false)
+
+  const handleShowSharePopup = () => {
+    setIsShownSharePopup(true)
+  }
+
+  const handleCloseSharePopup = () => {
+    setIsShownSharePopup(false)
+  }
 
   const handleNewChat = () => {
     addNewChat()
@@ -43,9 +54,16 @@ export const Bot: React.FC<BotProps> = ({ onClose }) => {
         </button>
       </div>
 
-      <Button whiteBorder fullSize className={classes['share-chat']}>
+      <Button
+        whiteBorder
+        fullSize
+        className={classes['share-chat']}
+        onClick={handleShowSharePopup}
+      >
         share {botName && botName.length < 11 ? botName : 'chat'}
       </Button>
+
+      {shownSharePopup && <SocialShare onClose={handleCloseSharePopup} />}
 
       <Button
         white

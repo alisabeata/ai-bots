@@ -1,0 +1,27 @@
+1. first of all add the subdirectory /share/ with static HTML that 
+   includes og tags (og:image, og:description, twitter cards etc), 
+   necessary meta information to send (icon, title, description etc), 
+   or additional info to collect metrics (for the inner use)
+   (!) in case of using Create React APP
+
+1.1. if it's just a bot info then it's possible to add og information 
+   in the template (!) in case of using SSR rendering (Next.js)
+
+
+<meta property="og:url" content="https://www.your-domain.com/your-page.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Your Website Title" />
+<meta property="og:description" content="Your description" />
+<meta property="og:image" content="https://www.your-domain.com/path/image.jpg" />
+
+
+Example Facebook JS SDK:
+
+step 1:
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="rveU9UFg"></script>
+
+step 2:
+<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+https://developers.facebook.com/docs/plugins/share-button/#example

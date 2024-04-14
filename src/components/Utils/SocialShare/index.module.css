@@ -1,0 +1,84 @@
+.social-share {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.social-share_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+}
+
+.social-share_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 500px;
+  height: 250px;
+  z-index: 15;
+  background: white;
+  color: black;
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+.social-share_close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  color: black;
+  text-decoration: underline;
+  border: 0 none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.social-share_wrap h3 {
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.social-share_wrap ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-share_wrap ul a,
+.social-share_wrap ul button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'MonumentExtended-Regular', sans-serif;
+  background-color: #161616;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  border-radius: 100px;
+  padding: 15px 28px;
+  margin: 0.5rem;
+  border: 0 none;
+  cursor: pointer;
+  box-sizing: border-box;
+  user-select: none;
+  white-space: nowrap;
+  word-wrap: break-word;
+  text-decoration: none;
+  text-transform: lowercase;
+}
