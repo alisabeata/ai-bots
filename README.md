@@ -25,8 +25,8 @@ Before you begin, ensure you have installed:
 To get started with Iris, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/your-username/iris.git
-cd iris
+git clone https://github.com/your-username/ai-bots.git
+cd ai-bots
 npm install
 ```
 
