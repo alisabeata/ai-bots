@@ -1,4 +1,4 @@
-# Iris - AI bots
+# AI bots
 
 ## Overview
 
